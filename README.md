@@ -1,30 +1,24 @@
-# Règles pour la traduction francophone de Mattermost
+# Richtlijnen om Mattermost te vertalen naar het Nederlands
 
 <!-- vim-markdown-toc GFM -->
 
-* [Introduction](#introduction)
-    * [Instance de traduction](#instance-de-traduction)
-    * [Commentaires pour les traducteurs](#commentaires-pour-les-traducteurs)
-    * [Traduction hors ligne](#traduction-hors-ligne)
-    * [Tester ses traductions](#tester-ses-traductions)
-    * [Outils pour le traducteur](#outils-pour-le-traducteur)
+* [Inleiding](#Inleiding)
+    * [Vertalingsserver](#Vertalingsserver)
+    * [Opmerkingen voor vertalers](#opmerkingen-voor-vertalers)
+    * [Offline vertaling](#offline-vertaling)
+    * [Test jouw vertalingen](#test-jouw-vertalingen)
+    * [Tools voor de vertaler](#tools-voor-de-vertaler)
         * [Pology](#pology)
         * [Bases de connaissance](#bases-de-connaissance)
-    * [Points à améliorer dans la traduction francophone](#points-à-améliorer-dans-la-traduction-francophone)
-* [Insertion de caractères unicodes](#insertion-de-caractères-unicodes)
-    * [Introduction](#introduction-1)
-    * [Touche compose](#touche-compose)
-    * [Table de caractères](#table-de-caractères)
-    * [Code des caractères](#code-des-caractères)
-* [Style](#style)
+    * [Punten om te verbeteren in de Nederlandse vertaling](#punten-om-te-verbeteren-in-de-nederlandse-vertaling)
+    
+* [Stijlgids](#stijlgoids)
     * [Jargon](#jargon)
-    * [Usage de l'impératif](#usage-de-limpératif)
-    * [Usage du futur simple](#usage-du-futur-simple)
-    * [Majuscules](#majuscules)
-    * [Abbréviations](#abbréviations)
-    * [Guillemets](#guillemets)
-    * [Pluriel de majesté](#pluriel-de-majesté)
-    * [Ecriture inclusive](#ecriture-inclusive)
+    * [Hoofdletters](#hoofdletters)
+    * [Afkortingen](#afkortingen)
+    * [Citaten](#citaten)
+    * [Majestueuze meervoud](#majestueuze-meervoud)
+    * [Inclusie schrijven](#inclusief-schrijven)
     * [Traduction trop longue](#traduction-trop-longue)
     * [Gestion du pluriel](#gestion-du-pluriel)
         * [Exemple 1](#exemple-1)
@@ -101,472 +95,373 @@
     * [Terms](#terms)
     * [Token / secret key](#token--secret-key)
     * [Trigger](#trigger)
-    * [Unread](#unread)
     * [URL signing](#url-signing)
     * [Worker](#worker)
 
 <!-- vim-markdown-toc -->
 
-## Introduction
+## Inleiding
 
-Bonjour et merci de participer à la traduction francophone de Mattermost !
+Welkom en hartelijk dank om mee te willen werken aan de Nederlandse vertaling van Mattermost !
 
-La traduction francophone de Mattermost étant activement maintenue, voici quelques conseils et règles de traduction à respecter.
+De Nederlandse vertaling wordt actief bijgewerkt. We geven hier wat raadgevingen en regels mee om de eenheid en consistentie in de vertaling te behouden. Bij vragen kan je steeds contact opnemen met ctlaltdieliet (Tom De Moor) op [https://community.mattermost.com](https://community.mattermost.com)
 
-### Instance de traduction
+### Vertalingsserver
 
-Mattermost utilise [une instance Pootle pour ses traductions](https://translate.mattermost.com/fr/). Si ce n'est pas déjà fait, veuillez créer un compte sur cette instance pour pouvoir participer.
+Mattermost gebruikt [Pootle voor de vertalingen](https://translate.mattermost.com/nl/). Als je dit nog niet deed, moet je een account aanmaken om te kunnen meewerken aan de vertaling.
 
-Le nombre de chaînes traduites étant assez élevé au sein du projet Mattermost, si vous trouvez des traductions qui ne respectent pas ces quelques règles, n'hésitez pas à proposer une correction sur Pootle.
+Het aantal vertaalde zinnen is vrij hoog binnen het Mattermost-project. Als je vertalingen vindt die de onderstaande regels niet respecteren, aarzel dan niet om een correctie op Pootle voor te stellen.
 
-Veuillez noter que cette instance est habituellement indisponible tous les jours de minuit à une heure du matin (UTC+1). L'instance doit en effet être coupée lorsque les traductions sont en cours de synchronisation avec le repository git de Mattermost.
+Houd er rekening mee dat Pootle meestal elke dag van middernacht tot één uur 's ochtends niet beschikbaar is (UTC + 1). De server is even onbereikbaar wanneer de vertalingen worden gesynchroniseerd met de Git-repository van Mattermost.
 
-### Commentaires pour les traducteurs
+### Opmerkingen voor vertalers
 
-Pootle supporte l'ajout de commentaires permettant d'aider le traducteur. Ils sont utiles pour préciser à l'utilisateur si une chaîne doit se traduire à l'infinitif ou à l'impératif par exemple. En effet, en anglais il n'y a aucune différence entre ces deux formes, seul le contexte et la cohérence du reste de la boite de dialogue nous permettent de choisir un temps plutôt qu'un autre.
+Pootle ondersteunt het toevoegen van opmerkingen om de vertaler te helpen. Ze zijn handig om aan de gebruiker te specificeren of een zin bijvoorbeeld moet vertaald worden naar de infinitief of de imperatief. 
+In het Engels is er inderdaad geen verschil tussen deze twee vormen, alleen de context en de consistentie van de rest van het dialoogvenster stellen ons in staat om de ene keer te kiezen in plaats van de andere.
 
-![Exemple de commentaire Pootle](pootle_comments_0001.png)
+! [Voorbeeld van een Pootle-opmerking] (pootle_comments_0001.png)
 
-Ces commentaires peuvent être ajoutés par le biais de Pootle ou par le biais de tout autre logiciel supportant les fichiers .po (gettext). Ils sont en effet sauvegardés au sein du fichier.
+Deze opmerkingen kunnen worden toegevoegd via Pootle.
 
-Cependant, veuillez garder à l'esprit que ces commentaires doivent être courts.
-
-**Veuillez ne pas placer de retours à la ligne** insérés par `CTRL+ENTREE` dans ces commentaires. Le caractère produit `^M` (ou `0d` -zero d- en hexadecimal) n'est pas reconnu par `po2i18n` lorsqu'il est placé en début de ligne de commentaire. `po2i18n` fait partie de [Mattermosti18n](https://github.com/rodcorsi/mattermosti18n), une suite d'utilitaires écrits en Go, utilisés par Mattermost pour convertir les fichiers .po en fichiers JSON et inversément. Ces retours à la ligne créent également des problèmes avec l'instance Pootle utilisée par Mattermost. Une fois des commentaires avec des retours à la ligne ajoutés, même si ces commentaires sont supprimés par après, [ils sont toujours conservés dans les fichiers .po](https://community.mattermost.com/core/pl/xw9j5r1uij8hxn8j35ippztxsh). Le responsable de Mattermost doit alors modifier le fichier manuellement. Nous ne savons pas quelle pourrait être la cause de ce problème; nous ne parvenons pas à reproduire le problème sur une installation fraîche de Pootle utilisée localement.
-
-### Traduction hors ligne
-
-Bien que l'instance Pootle utilisée par Mattermost offre la possibilité de télécharger les fichiers .po afin de les tester sur une instance de test de Mattermost, le responsable technique de Mattermost [a désactivé manuellement sur Pootle](https://pre-release.mattermost.com/core/pl/9x5msk5iuifuxfm8wyjadsdyec) la possibilité d'envoyer et remplacer les traductions par nos propres fichiers .po pour les raisons suivantes.
-
-* Toutes les chaînes sont marquées comme `traduites` après que le fichier ait été envoyé, même si des chaînes n'ont pas été traduites;
-* Les traductions peuvent être périmées entre le moment auquel le contributeur télécharge son fichier et renvoie le fichier sur Pootle;
-* Renvoyer les fichiers sur la plateforme écrase la version précédente; dans le cas d'un problème, comme celui évoqué au point précédent avec les commentaires qui peuvent corrompre le build process, il faut qu'un développeur puisse restaurer le fichier dans le cas où il se rend compte que la convertion .po -> JSON échoue. Mattermost ne peut pas garantir qu'un développeur dispose du temps nécessaire pour affectuer cette action.
-
-C'est pourquoi, même si ces raisons sont discutables lorsqu'un contributeur agit en âme et conscience, la seule façon de traduire Mattermost, c'est en ligne par le biais de l'instance Pootle mise à disposition. Les traductions hors lignes ne sont pas possibles.
-
-### Tester ses traductions
-
-Il est vivement recommandé d'[utiliser une version de développement de Mattermost](https://developers.mattermost.com/contribute/server/developer-setup/) de façon à pouvoir vous [assurer que vos traductions soient correctes selon le contexte](https://docs.mattermost.com/developer/localization.html#test-translations).
-
-### Outils pour le traducteur
-
-#### Pology
-
-[La communauté francophone de KDE](https://fr.l10n.kde.org/pology.php) utilise un outil écrit en python appelé "pology". Cet outil permet d'effectuer toutes sortes d'opérations sur des fichiers po (gettext). Pour en savoir davantage sur les fonctionnalités de pology, [veuillez lire sa documentation](http://pology.nedohodnik.net//doc/user/en_US/index-mono.html).
-
-Installez le paquet correspondant à pology sous votre distribution (sous Arch Linux, utilisez [pology-svn](https://aur.archlinux.org/packages/pology-svn/)) ou clonez le dépôt SVN:
-
-    svn co svn://anonsvn.kde.org/home/kde/trunk/l10n-support/pology
-
-Pour vous assurer que votre traduction dispose d'espaces insécables, ce qui est vivement recommandé en français, téléchargez les fichiers .po de l'instance pootle et exécutez pology de façon à ajouter automatiquement des espaces insécables sur le fichier .po (ATTENTION: exécuter cette commande modifie directement le fichier, pensez donc à le sauvegarder avant) :
-
-    /usr/share/pology/scripts/posieve.py fr:setUbsp ./web_static.po
-
-Les autres commandes de pology telles que `check_rules`, `check_spell`, `check_grammar` et `find_messages` soit n'ont pas été testées, soit ne sont pas compatibles à cause de la façon dont les paramètres des chaînes de Mattermost sont représentés dans le langage Go. La présence de `{{.varName}}`, par exemple, est considérée comme une erreur par pology (un espace est requis après un point, etc.).
-
-#### Bases de connaissance
-
-Si vous ne trouvez pas comment traduire un terme, plusieurs solutions :
-
-* regardez comment le même terme a été traduit les fois précédentes dans la traduction de Mattermost,
-
-* regardez sur le [glossaire de Traduc.org (organisation de volontaires de traducteurs francophones pour logiciels libres)](https://glossaire.traduc.org),
-
-* regardez sur le [portail linguistique de Microsoft](https://www.microsoft.com/fr-fr/language/Search),
-
-* posez votre question sur [le canal Mattermost réservé à la traduction francophone](https://community.mattermost.com/core/channels/french-localization).
-
-### Points à améliorer dans la traduction francophone
-
-La traduction francophone est déjà dans un très bon état. Parmi les points à améliorer pour les prochaines versions :
-
-* Utiliser l'espace fine insécable plutôt que l'espace insécable est recommandé selon les règles typographiques francophones. Le caractère représentant l'espace fine insécable est disponible depuis la sortie de Unicode 3.0 et est bien supporté par les logiciels (cf. [le rapport sur l'utilisation de l'espace fine insécable au sein des logiciels libres](http://malizor.org/public/fines/fines.pdf)). L'espace insécable est, quant à lui, dans le monde du web et du domaine des zones de texte, souvent source d'erreurs (cf. [bug chromium](https://bugs.chromium.org/p/chromium/issues/detail?id=346096)) .
-* Remplacer les guillemets américains par leur version francophone.
-
-Ces deux éléments ne sont possibles que si nous pouvons éditer le fichier .po manuellement, passer par le site web de traduction prendrait trop de temps tant la procédure serait répétitive et source d'erreurs.
-
-## Insertion de caractères unicodes
-
-### Introduction
-
-Cette section est utile pour savoir comment insérer un caractère tel que les guillemets français ou l'espace fine insécable, deux caractères nécessaires à la traduction francophone de Mattermost.
-
-Pour savoir comment insérer un caractère unicode, la meilleure façon est de taper son caractère unicode ou d'utiliser la touche compose. Pour ce faire, veuillez vous référer à [la page Wikipedia en question (en englais)](https://en.wikipedia.org/wiki/Unicode_input#Hexadecimal_code_input). En fonction des systèmes d'exploitation, des bibliothèques logicielles et des composants d'entrée système (Wayland/Xorg), la méthode diffère.
-
-Il en est de même en fonction de votre navigateur web. Si vous utilisez Firefox ou Chrome/Chromium sous Linux, étant donné que ces logiciels sont basés sur GTK, outre la touche compose, vous pouvez utiliser la combinaison offerte par GTK `Ctrl+Maj` suivi de `u` et du code hexadécimal (ex.: `202f` pour l'espace fine insécable).
-
-### Touche compose
-
-Comme expliqué dans l'article Wikipedia, les utilisateurs de KDE ou de programmes écrits à l'aide de la bibliothèque Qt ne peuvent qu'utiliser la touche compose. Cette derière peut être liée à une touche de clavier que vous pouvez spécifier parmi une liste de touches prédéfinies. Ce lien s'effectue dans les paramètres sytèmes de KDE Plasma: `System Settings` > `Input Devices` > `Keyboard` > `Advanced` > `Position of Compose key` ([src.](https://unix.stackexchange.com/a/222791/146454#comment378580_222791)). La touche `Ctrl` de droite est un bon choix. Si vous spécifiez `Alt`, vous allez rentrer en conflict avec la touche `AltGr` utilisée pour placer le dièse par exemple ou tout autre caractère accessible par le 3ième niveau de touche sur les clavier francophones (Azerty belge et Azerty français).
-
-Sous Windows, il vous est également possible d'utiliser le logiciel [WinCompose](https://github.com/samhocevar/wincompose). L'espace fine insécable n'est pas supporté par défaut. Pour le supporter, ajoutez simplement un fichier dans `%USERPROFILE%\.XCompose` avec la ligne suivante:
-
-    <Multi_key> <space> <space> <space>		: " "	U202f		# NARROW NO-BREAK SPACE
-
-[Un patch a été fourni pour xcompose -un projet utilisé par WinCompose-](https://github.com/kragen/xcompose/pull/33) pour supporter ce caractère.
-
-Une fois le logiciel WinCompose relancé, il vous suffira de taper sur la touche Compose (par défaut `Alt` droit, ce paramètre peut être changé dans les options de WinCompose) suivie de trois fois la touche `espace`.
-
-Sous Linux, le principe est le même, placez dans votre `$HOME` un fichier `.XCompose` et relancez Xorg (ou redémarrez simplement votre machine).
-
-### Table de caractères
-
-Il est également possible de copier-coller le caractère de votre choix en utilisant l'[insertion de caractères spéciaux dans LibreOffice Writer](https://help.libreoffice.org/Common/Special_Character/fr) ou d'utiliser le logiciel de table de caractère propre à votre OS.
-
-* Sous Windows, ouvrez `charmap.exe`, cochez la case `Advanced view`, tappez le caractère que vous souhaitez en toutes lettres en anglais, cliquez sur `Search`, sélectionnez le caractère dans la table de résultats et cliquez sur `Copy`.
-
- ![Table de caractère sous Windows](charmap_windows_10_0001.png)
-
-* En utilisant l'application KDE `kcharselect`, le principe est similaire:
-
- ![Table de caractères sous KDE Plasma](kcharselect_plasma_0001.png)
-
-### Code des caractères
-
-Espace fine insécable (` `):
-
-* Avec la touche compose configurée précédemment: `compose+space+space+space`.
-
-Guillemets ouvrants (`« `):
-
-* Avec la touche compose configurée précédemment: `compose+<+<` suivi d'une espace fine insécable `compose+space+space+space`.
-* Sans la touche compose: lire [article wikipedia pour les guillemets](https://en.wikipedia.org/wiki/Guillemet#Typing_.22.C2.AB.22_and_.22.C2.BB.22_on_computers) et [article wikipedia pour les espace fines insécables](https://en.wikipedia.org/wiki/Non-breaking_space#Keyboard_entry_methods)
-
-Guillemets fermants (` »`):
-
-* similaire aux guillemets ouvrants, en inversant le sens et les `<` par `>`.
+Houd er echter rekening mee dat deze opmerkingen kort moeten zijn.
 
 
-## Style
+
+### Offline vertaling
+
+Hoewel de Pootle-instantie die door Mattermost wordt gebruikt de mogelijkheid biedt om .po-bestanden te downloaden om ze te testen op een test-instantie van Mattermost, heeft de technische manager van Mattermost [handmatig uitgeschakeld op Pootle] (https: // pre-release .mattermost.com / core / pl / 9x5msk5iuifuxfm8wyjadsdyec) de mogelijkheid om vertalingen te verzenden en te vervangen door onze eigen .po-bestanden om de volgende redenen.
+
+* Alle strings worden gemarkeerd als `vertaald` nadat het bestand is verzonden, zelfs als de strings niet zijn vertaald;
+* Vertalingen kunnen verouderd zijn tussen het moment dat de bijdrager zijn bestand uploadt en het bestand terugstuurt naar Pootle;
+* Het terugbrengen van de bestanden naar het platform overschrijft de vorige versie; in het geval van een probleem, zoals het in het vorige punt genoemde met opmerkingen die het bouwproces kunnen beschadigen, moet een ontwikkelaar het bestand kunnen herstellen in het geval dat hij zich realiseert dat de .po -> JSON-conversie mislukt. Mattermost kan niet garanderen dat een ontwikkelaar de tijd heeft die nodig is om deze actie toe te wijzen.
+
+Dit is waarom online binnen Pootle de enige manier is om Mattermost te vertalen. Offline vertalingen zijn niet mogelijk.
+
+### Test jouw vertalingen
+
+Het wordt sterk aanbevolen om [een ontwikkelingsversie van Mattermost te gebruiken] (https://developers.mattermost.com/contribute/server/developer-setup/) zodat je  [ervoor kunt zorgen dat uw vertalingen correct zijn in de context ] (https://docs.mattermost.com/developer/localization.html#test-translations).
+Maar het kan ook zonder!
+
+### Tools voor de vertaler
+
+
+
+
+#### Ondersteuning
+
+Als je niet vindt hoe je een term moet vertalen, zijn er verschillende oplossingen:
+
+* zie hoe dezelfde term de vorige keer werd vertaald in de vertaling van Mattermost,
+
+* kijk op het [Microsoft-taalportaal] (https://www.microsoft.com/nl-nl/language/Search),
+
+* stel uw vraag op [het Mattermost-kanaal gereserveerd voor Franse vertaling] (https://community.mattermost.com/core/channels/i18n-dutch).
+
+### Punten om te verbeteren in de Nederlandse vertaling
+
+De Nederlandse vertaling is volledig maar nog zeker niet consistent. Mogelijks is de vertaling meer Vlaams als Nederlands.
+
+Zo is er het verschil in gebruik van u/jij of uw/jouw. Ook qua correcte spelling is er nog heel wat werk. 
+
+Sommige zinnen zijn niet in overeenstemming met de context. Voel je dus zeker vrij om aanpassingen voor te stellen of zelf aanpassingen te maken.
+Het consequent gebruik van [hoofdletters](###Hoofdletters) staat ook nog niet op punt.
+
+
+## Stijlgids
 
 ### Jargon
 
-Mattermost dispose de son propre jargon. Pour en prendre connaissance, lisez la section [Message](#message).
+Mattermost gebruikt zijn eigen jargon. Meer informatie hier rond vind je bij [Berichten](#Berichten).
 
-### Usage de l'impératif
 
-| EN | FR |
+### Hoofdletters
+
+| EN | NL |
 | --- | --- |
-| Enter your credentials | **Veuillez** saisir vos informations d'identification |
+| System Console |Systeem console |
+| Private Messages |Privé berichten|
 
-De façon à assouplir l'ordre, nous employons `vouloir` à l'impératif avant le verbe représentant l'action à effectuer; sans utiliser de mention `s'il vous plait`.
+In het Engels plaatst men hoofdletters in samengestelde woorden. Dit doen we niet in het Nederlands.
 
-### Usage du futur simple
+Vandaar dat we in zinnen geen hoofdletter gebruiken: Bijvoorbeeld. Ga naar systeem console. Enkel bij aanduidingen voor een menu gebruiken we wel een hoofdletter.  (bv.: `Accounteigenschappen` > `Geavanceerde opties` > `...`).
 
-| EN | FR |
+### Afkortingen
+
+Bijvoorbeeld (e.g.) wordt afgekort als `Bijv. :`. Let op de spatie tussen het punt en het dubbelpunt. We gebruiken Bijv en niet bv.
+
+### Citaten
+
+Gerbruik dubbele aanhalingstekens om aan te geven dat het een citaat is.
+
+### Majestueze meervoud.
+
+Het majestueze meervoud wordt vrij vaak gebruikt in Engelse taalbronnen binnen Mattermost met de vermelding van de term 'We couldn't'.
+volkomen onjuist.
+
+Om zo dicht mogelijk bij andere vertalingen te zijn, zal dergelijke tekst worden vertaald als 'We konden de rechten niet controleren' in plaats van 'De machtigingen konden niet worden gecontroleerd' of 'Kan machtigingen niet controleren'.
+
+
+### Inclusief schrijven
+
+| EN | NL |
 | --- | --- |
-| When true, the OAuth 2.0 application is considered trusted by the Mattermost server | Lorsqu'activé, l'application OAuth 2.0 est considérée comme étant de confiance par le serveur | 
-| The URL for the About link on the Mattermost login and sign-up pages. If this field is empty, the About link is hidden from users. | L'URL vers la page À propos apparaissant sur les pages de connexion et d'enregistrement de Mattermost. Si ce champ est laissé vide, le lien sera masqué pour les utilisateurs. |
-| Slack Import: Channel {{.ChannelName}} header exceeds the maximum length. It will be truncated when imported. | Importateur Slack : L'entête du canal {{.ChannelName}} excède la longueur maximale. Il sera tronqué lors de l'importation. |
-| (Optional) The attribute in the AD/LDAP server that will be used to populate the first name of users in Mattermost. When set, users will not be able to edit their first name, since it is synchronized with the LDAP server. When left blank, users can set their own first name in Account Settings. | (Optionnel) L'attribut dans le serveur AD/LDAP qui est utilisé pour les prénoms des utilisateurs de Mattermost. Lorsque défini, les utilisateurs ne peuvent pas éditer leur prénom étant donné qu'il est alors synchronisé avec le serveur LDAP. Lorsque laissé vide, les utilisateurs peuvent définir leur propre prénom dans les paramètres du compte. |
+| @{{.Username}} was mentioned, but they did not receive notifications because they do not belong to this channel. | | @ {{.Username}} werd genoemd, maar ontvangt geen meldingen omdat deze niet tot dit kanaal behoort. |
 
-Ne vous calquez pas sur le temps utilisé dans la version anglaise. [Selon une petite étude menée avec des francophones natifs](https://irc.died.re/2017/08/12/#line-536), utiliser l'indicatif futur simple donne l’impression d’une fonctionnalité documentée mais pas encore implémentée.
+We gebruiken geen hij/zij, omdat dit de tekst moeilijker te begrijpen maakt. Suggesties zijn zeker welkom omdat we inclusie belangrijk vinden.
 
-L'indicatif présent (ici à la voix passive) sonne plus naturellement et semble moins étrange. L'important est ici encore de garder une certaine cohérence. Notre traduction utilise le plus possible de l'indicatif présent; utiliser un temps passé ou futur est, la plupart du temps, à proscrire.
 
-Dans tous les cas, veuillez conserver une concordance des temps correcte. [Pour rappel](https://www.francaisfacile.com/exercices/exercice-francais-2/exercice-francais-15267.php):
+### Te lange vertalingen
 
-* si + présent -> futur simple (ou présent)
+Als jouw vertaling te lang blijkt te zijn voor de ruimte die door de gebruikersinterface is toegewezen en als je, gezien de betekenis, de Nederlandse vertaling niet kan inkorten, leg het probleem dan uit op het [kanaal "Lokalisatie" van Mattermost] (https://community.mattermost.com/core/channels/localization).
 
-  `Si tu veux, je viendrai / je viens.` (selon le contexte)
+### Meervouden
 
-* si + imparfait -> conditionnel présent
-
-  `Si tu voulais, tu pourrais.`
-
-* si + plus-que-parfait -> conditionnel passé
-
-  `Si tu avais voulu, tu aurais pu.`
-
-### Majuscules
-
-| EN | FR |
-| --- | --- |
-| System Console |Console **s**ystème |
-| Private Messages | Messages **p**rivés |
-| Please configure your {docsLink} in the System Console or in gitlab.rb if you're using GitLab Mattermost. | Veuillez configurer votre {docsLink} dans la console système ou dans le fichier gitlab.rb si vous utilisez GitLab Mattermost. |
-
-Les anglophones apprécient placer des majuscules dans des mots qu'ils considèrent composés. En français, nous n'utilisons pas de majuscules.
-
-De même, en plein milieu d'une phrase de description de fonctionnalité, comme `Aller dans la console système`, nous ne plaçons pas de majuscules. Nous en plaçons uniquement lorsque nous spécifions les menus (ex.: `Paramètres du compte` > `Options avancées` > `...`).
-
-### Abbréviations
-
-Exemple s'abrège en `ex. :`. Notez l'utilisation d'une espace après le point. Vous devriez utiliser une espace fine insécable pour cette espace (cf. [Insertion de caractères unicodes](#insertion-de-caractères-unicodes)).
-
-### Guillemets
-
-Utilisez les guillemets francophones (cf. [Insertion de caractères unicodes](#insertion-de-caractères-unicodes)).
-
-### Pluriel de majesté
-
-Le pluriel de majesté est assez souvent employé dans les sources de langue anglaise au sein de Mattermost avec la mention du terme `We couldn't`.
-
-Il s'avère quelques fois que les messages de Mattermost s'expriment en `nous` plutôt qu'en `il`, par exemple: `We couldn't check the permissions`. Une traduction telle que `Nous ne pouvons pas vérifier les permissions` est tout à fait incorrecte.
-
-De façon à se calquer au plus près des autres traductions, pareil texte sera traduit par `Impossible de vérifier les permissions` plutôt que `Les permissions n'ont pas pu être vérifiées`.
-
-### Ecriture inclusive
-
-| EN | FR |
-| --- | --- |
-| @{{.Username}} was mentioned, but they did not receive notifications because they do not belong to this channel. | @{{.Username}} a été mentionné(e), mais, ne faisant pas partie de ce canal, il/elle ne recevra pas de notification. |
-
-Nous n'utilisons pas l'écriture inclusive, celle utilisant le '·', car en plus de ne pas avoir été validée par l'Académie française, elle rend le texte plus difficile à comprendre. Nous pensons qu'il s'agit surtout d'une solution qui ne durera pas, portée le féminisme francophone.
-
-Toutefois, lorsque rendu nécessaire comme dans le texte ci-dessus, nous privilégions plutôt les parenthèses ou la mention explicite il/elle, qui sont des emplois beaucoup plus répandus en francophonie.
-
-Par facilité de lecture, nous nous refusons à ajouter des contreparties féminines à tous les termes masculins; par conséquent nous considérons toujours la règle « le masculin l'emporte » comme étant valable au sein de cet effort de traduction/régionalisation.
-
-### Traduction trop longue
-
-Si votre traduction s'avère être trop longue pour l'espace octroyé par l'interface utilisateur et si, compte tenu du sens, vous n'êtes pas en mesure d'abréger la traduction francophone, veuillez exposer le problème sur le [canal « Localization » de Mattermost](https://community.mattermost.com/core/channels/localization).
-
-### Gestion du pluriel
-
-Au sein de Mattermost, les règles de pluralisation en fonction de la langue sont gérées par la bibliothèque formatjs. Il se peut que vous rencontriez la syntaxe de cette bibliothèque au gré de vos traductions. La syntaxe de formatjs se matérialise comme tel:
-
+Binnen Mattermost worden de meervoudsregels volgens de taal beheerd door de formatjs-bibliotheek. Mogelijk komt je de syntaxis van deze bibliotheek tegen, afhankelijk van jouw vertalingen. De formatjs syntax komt als volgt tot stand:
     {key, plural, matches}
 
-* `key`: il s'agit de la variable qui représente le nombre d'éléments
-* `plural`: il s'agit d'un mot clé fixe (en l'occurrence `plural`) qui indique que le mapping concerne un appel à la bibliothèque formatjs.
-* `matches`: il s'agit de la syntaxe propre à formatjs qui va s'occuper de déterminer si la proposition va concerner le singulier, ou le pluriel, voire un nombre particulier (0, 1, 2, etc.).
+* `key`: dit is de variabele die het aantal elementen vertegenwoordigt
+* `plural`: het is een vast trefwoord (in dit geval `meervoud`) dat aangeeft dat de afbeelding een aanroep van de formatjs-bibliotheek betreft.
+* `matches`: 
 
-En place de `matches` peuvent donc se trouver un ou plusieurs des mots clés suivants:
+In plaats van `matches'kunnen daarom een of meer van de volgende trefwoorden zijn:
+* `zero`: Deze categorie wordt gebruikt voor talen die een specifieke grammatica hebben wanneer er geen element is, zoals Arabisch of Lets. Nederlands is niet direct betrokken bij dit element, we kunnen dat gebruiken dat betrekking heeft op het enkelvoud in plaats van op deze categorie.
+* `one`: Deze categorie wordt gebruikt voor talen met een specifieke grammatica voor een enkel element, dat veel talen betreft. Veel Aziatische talen, zoals Chinees of Japans, gebruiken deze categorie NIET. Nederlands kent dit wel. We zullen daarom dit zoekwoord gebruiken, vaak in combinatie met `andere`, cf. verderop.
+* `two`: Deze categorie wordt gebruikt voor talen met een specifieke grammatica voor twee elementen, zoals Arabisch of Welsh. Nederlands wordt ook beïnvloed, hoewel in plaats daarvan 'overig' kan worden gebruikt.
+* `few`: Deze categorie wordt gebruikt voor talen met een specifieke grammatica voor een paar elementen. Sommige talen hebben regels voor 2-4 elementen, andere voor 3-10 en andere hebben zelfs complexere regels. Deze regel is niet van toepassing op het Nederlands.
+* `many`: Deze categorie wordt gebruikt voor talen met een specifieke grammatica voor veel elementen zoals Arabisch, Pools of Russisch.
+* `other`: Deze categorie wordt gebruikt als er geen waarde overeenkomt met een van de vorige categorieën. Deze categorie wordt vaak gebruikt als de meervoudsvorm voor bepaalde talen zoals Frans of Engels, die alleen een aparte grammatica hebben voor de enkelvoudige elementen en die meervoud.
+* `=value`: Deze categorie wordt gebruikt om een bepaalde waarde aan te passen, ongeacht de meervoudscategorie die hierboven is gebruikt.
 
-* `zero`: Cette catégorie est utilisée pour les langues qui ont une grammaire spécifique lorsqu'il n'y a aucun élément, comme l'arabe ou le letton. Le français n'étant pas directement concerné par cet élément, on pourra utiliser celui relatif au singulier en lieu et place de cette catégorie.
-* `one`: Cette catégorie est utilisée pour les langues qui ont une grammaire spécifique pour un seul élément, ce qui concerne de nombreuses langues. De nombreuses langues asiatiques, comme le chinois ou le japonais, n'utilisent PAS cette catégorie. Le français est conserné par cette grammaire. On utilisera donc ce mot clé, souvent en combinaison de `other`, cf. plus bas.
-* `two`: Cette catégorie est utilisée pour les langues qui ont une grammaire spécifique pour deux éléments, comme l'arabe ou le gallois. Le français est également concerné, bien que `other` puisse être utilisé en lieu et place.
-* `few`: Cette catégorie est utilisée pour les langues qui ont une grammaire spécifique pour quelques éléments. Certaines langues ont des règles pour 2-4 éléments, d'autres pour 3-10, et d'autres disposent de règles encore plus complexes. Le français n'est pas concerné par cette règle.
-* `many`: Cette catégorie est utilisée pour les langues qui ont une grammaire spécifique pour beaucoup d'éléments comme l'arabe, le polonais ou le russe.
-* `other`: Cette catégorie est utilisée si aucune value ne correspond à l'une des catégories précédentes. Cette catégorie est souvent utilisée comme la forme pluriel pour certaines langues comme le français ou l'anglais qui ont une grammaire distincte seulement pour les éléments singuliers et ceux pluriel.
-* `=value`: Cette catégorie est utilisée pour faire correspondre à une certaine valeur peu importe la catégorie de pluriel utilisée plus haut.
+Om het [functioneren van deze bibliotheek] (https://formatjs.io/guides/message-syntax/#plural-format) te illustreren, nemen we de volgende voorbeelden.
 
-Pour illustrer le [fonctionnement de cette bibliothèque](https://formatjs.io/guides/message-syntax/#plural-format), prenons les exemples suivants.
-
-#### Exemple 1
+#### Voorbeeld 1
 
     New {count, plural, one {message} other {messages}}
 
-donne au sein de l'interface `New message` au singulier et `New messages` pour le pluriel.
+geeft binnen de interface "New message" in het enkelvoud en "New mesages" voor het meervoud.
+In het Nederlands zijn ook 2 versies van vertaling vereist. Een voor het enkelvoud (`Nieuw bericht`) en de andere voor het meervoud (` Nieuwe berichten`).
+In de formatjs syntax geeft dit het volgende:
 
-En français, 2 versions de traduction sont nécessaires également. Une pour le singulier (`Nouveau message`) et l'autre pour le pluriel (`Nouveaux messages`).
+    {count, plural, one {Nieuw bericht} other {Nieuwe berichten}}
 
-Dans le syntaxe de formatjs, ceci donne la déclaration suivante :
-
-    {count, plural, one {Nouveau message} other {Nouveaux messages}}
-
-#### Exemple 2
+#### Voorbeeld 2
 
     {count, number} {count, plural, one {user} other {users}} of {total, number} total
 
-    {count, number} {count, plural, one {utilisateur} other {utilisateurs}} d'un total de {total, number}
+    {count, number} {count, plural, one {gebruiker} other {gebruikers}} op een totaal van {total, number}
 
-Produira les 2 traductions suivantes: `1 utilisateur d'un total de x` vs `x membres d'un total de x`.
+Dit geeft 2 vertalingen: `1 gebruiker op een totaal van x` vs `x gebruikers op een totaal van x`.
 
-#### Exemple 3
+#### Voorbeeld 3
 
-    {count, number} {count, plural, one {Feature} other {Features}} Enabled
+    {count, number} {count, plural, one {Feature} other {Features}} Ingeschakeld
 
-    {count, number} {count, plural, one {fonctionnalité activée} other {fonctionnalités activées}}
+    {count, number} {count, plural, one {functie ingeschakeld} other {functies ingeschakeld}}
 
-Comme vous pouvez le voir, selon le contexte, il est possible que vous deviez placer plus de mots dans les accolades de façon à accorder l'ajectif. L'adjectif est en effet invariable en anglais, les chaines anglaises ne tiennent pas compte de ce détail. `1 fonctionnalité activée` vs `x fonctionnalités activées`.
+Zoals je kan zien, moet je, afhankelijk van de context, mogelijk meer woorden tussen accolades plaatsen om bij het bijvoeglijk naamwoord te passen. Het bijvoeglijk naamwoord is inderdaad onveranderlijk in het Engels, Engelse kanalen houden geen rekening met dit detail. `1 functie ingeschakeld` versus` x functies ingeschakeld`.
 
-#### Exemple 4
+#### Voorbeeld 4
 
     Every {count, plural, one {minute} other {{count, number} minutes}}
 
-    {count, plural, one {Chaque minute} other {Toutes les {count, number} minutes}}
+    {count, plural, one {Elke minuut} other {Alle {count, number} minuten}}
 
-Ici, il est question d'un changement important, la tournure de phrase ne se traduit pas du tout de la même façon suivant qu'il s'agisse du singulier ou du pluriel: `Chaque minute` vs `Toutes les x minutes`.
-
+Hier hebben we het over een belangrijke verandering, de zinomslag wordt helemaal niet op dezelfde manier vertaald, afhankelijk van of het enkelvoud of het meervoud is: 'Elke minuut' versus 'Elke x minuten'.
 
 ## Vocabulaire
 
-### At rest / in transit
+### In rust / In transit
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Invalid at rest encrypt key for SQL settings. Must be 32 chars or more. | Clé de chiffrement invalide pour les paramètres SQL pour les données au repos (les données stockées sur des disques dans ces centres de données sont appelées « au repos », au contraire de « en transit » soit lorsqu'elles sont transférées sur le réseau). Doit être égale ou supérieure à 32 caractères. |
+| Invalid at rest encrypt key for SQL settings. Must be 32 chars or more. | Ongeldige coderingssleutel voor SQL-parameters voor gegevens in rust (gegevens die op schijven in deze datacenters zijn opgeslagen, worden "in rust" genoemd, in tegenstelling tot "in transit", hetzij wanneer ze via het netwerk worden overgedragen). Moet gelijk zijn aan of groter zijn dan 32 tekens. |
 
-Ce concept est assez récent et a reçu une plus grande notoritété récemment suite à l'entrée en vigueur des nouveaux règlements sur la protection des données personnelles comme le RGPD. 
+Dit concept is vrij recent en heeft recentelijk meer bekendheid gekregen na de inwerkingtreding van nieuwe regelgeving inzake de bescherming van persoonsgegevens zoals de GDPR.
 
-Dans le cadre du traitement des données, ces dernières se situent toujours dans l'un des états suivants :
-* `Data in use` (données en utilisation): les données sont constamment en cours de changement de stockage, passage en centre de données, utilisation dans des feuilles de calcul, etc.
-* `Data in motion` ou `Data in transit`: lorsque les données sont en cours de transfert via le réseau informatique ou lorsqu'elle sont transférées en mémoire vive ou simplement mises à jour .
-* `Data at rest`: données inactives stockées dans des bases de données, des archives, des sauvegardes, bref toutes les données qui ne sont pas susceptibles d'être directement utilisées. Dans le cas de Mattermost, ceci peut être les vieilles données de chat échangées sur l'application il y a longtemps.
+In het kader van gegevensverwerking bevindt dit laatste zich altijd in een van de volgende staten:
+* `Data in use`: data wordt constant veranderd van opslag naar datacenter, gebruik in spreadsheets, etc.
+* "Data in motion" of "Data in transit": wanneer de gegevens worden overgedragen via het computernetwerk of wanneer ze worden overgebracht naar RAM of eenvoudig worden bijgewerkt.
+* "Data at rest": inactieve data opgeslagen in databases, archieven, backups, kortom alle data die waarschijnlijk niet direct gebruikt zullen worden. In het geval van Mattermost kunnen dit de oude chatgegevens zijn die lang geleden op de applicatie zijn uitgewisseld.
 
-Nous avons décidé de prendre quelques latitudes dans la chaîne traduite de permettre à rajouter des précisions sur ce terme assez nébuleux pour un francophone.
+We hebben besloten een aantal verduidelijkingen in de vertaalde keten te nemen om details over deze term nogal vaag voor een Nederlandstalige toe te voegen.
 
 ### API
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Empty array under 'image' in request | Tableau vide dans le paramètre 'image' de la requête |
+| Empty array under 'image' in request | Lege array in de 'afbeelding' parameter van het verzoek |
 
-Bien que « section » aurait pu convenir dans ce contexte, dans le cadre d'une requête sur une API, il est plus question de « paramètre ».
+In de context van een API-verzoek voegen we nog "parameter" toe.
 
-### Attach
+### Bijvoegen
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Error attaching files to post. postId=%v, fileIds=%v, message=%v | Une erreur s'est produite lors du lien des fichiers au message. postId=%v, fileIds=%v, message=%v |
-| Unable to attach emoji data to request | Impossible de lier une émoticône à la requête |
-| Attaching Files | Joindre des fichiers |
-| To import posts with attached files, see {slackAdvancedExporterLink} for details. | Pour importer des messages avec fichiers joints, voir {slackAdvancedExporterLink} pour plus de détails. |
+| Error attaching files to post. postId=%v, fileIds=%v, message=%v | Er is een fout opgetreden bij het koppelen van de bestanden aan het bericht. postId=%v, fileIds=%v, message=%v |
+| Unable to attach emoji data to request | Kan geen emoji-gegevens koppelen aan verzoek |
+| Attaching Files | Bestanden toevoegen |
+| To import posts with attached files, see {slackAdvancedExporterLink} for details. | Om bestanden te importeren met bijgevoegde bestanden, zie {slackAdvancedExporterLink} voor verdere details. |
 
-En parlant de pièces jointes (`attachments`) et donc de fichiers, utilisez le terme `joint`/`joindre`.
+als we over bijlagen en toevoegen  bestanden gesproken, gebruik de term toevoegen of bijgevoegen`.
 
-Dans le cas contraire, utilisez le plus possible la mention de `lien`. En effet, nous utilisons déjà le terme `joindre`/`rejoindre` dans le cas d'un utilisateur joignant/quittant un canal.
+Gebruik anders indien mogelijk de `koppelen`. 
 
-### Autocompletion
+### Auto-aavullen of suggestie
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Check with your System Admin or open the autocomplete list by typing `/` to determine if your team configured any custom slash commands. | Demandez à votre administrateur système ou ouvrez la liste de suggestions de commandes en tapant `/` pour savoir si votre équipe a configuré des commandes slash personnalisées. |
-| When true, Elasticsearch will be used for all autocompletion queries on users and channels using the latest index. | Lorsqu'activé, Elasticsearch est utilisé pour toutes les requêtes d'auto-complétion sur les utilisateurs et les canaux en utilisant le dernier index disponible. |
+| Check with your System Admin or open the autocomplete list by typing `/` to determine if your team configured any custom slash commands. | Vraag jouw systeembeheerder of open de lijst met opdrachtsuggesties door `/` te typen om te zien of jouw team aangepaste slash-opdrachten heeft geconfigureerd. |
+| When true, Elasticsearch will be used for all autocompletion queries on users and channels using the latest index. | Indien ingeschakeld, wordt Elasticsearch gebruikt voor alle verzoeken om automatische aanvulling op gebruikers en kanalen met behulp van de laatst beschikbare index. |
 
-Selon le cas, peut également exprimer l'idée de « suggestion » ou de « saisie semi-automatique ».
+Afhankelijk van het geval kan ook het idee van "suggestie" of "semi-automatische gegevensinvoer" worden uitgedrukt.
 
 ### Batch
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Email batching job's receiving channel was full. Please increase the EmailBatchingBufferSize. | Le canal recevant les e-mail envoyés par lot est plein. Veuillez augmenter le paramètre EmailBatchingBufferSize. |
+| Email batching job's receiving channel was full. Please increase the EmailBatchingBufferSize. | Het kanaal dat batch-e-mails ontvangt, is vol. Verhoog de parameter EmailBatchingBufferSize. |
 
-L'envoi par lots.
+In bulk verzenden
 
 ### Before taking effect
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Changing properties in this section will require a server restart before taking effect. | Modifier les paramètres de cette section nécessite un redémarrage du serveur avant de prendre effet. |
+| Changing properties in this section will require a server restart before taking effect. | Het wijzigen van de instellingen in deze sectie vereist een herstart van de server voordat deze van kracht worden. |
 
-Simplement traduit de façon littérale. Ne pas utiliser `Pour prendre effet`.
+
 
 ### Beta
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Compliance Export (Beta) | Compliance Export (Expérimental) |
+| Compliance Export (Beta) | Compliance Export (Experimenteell) |
 
-Ici, comme le terme « alpha » n'est pas présent au sein de l'interface, la notion de chemin de progression d'un projet ne doit pas être exprimée. Il n'est dès lors pas nécessaire d'employer le jargon des différentes étapes de la conception logicielle. Un terme plus francophone et compréhensible de tous peut alors être employé.
+Hier, aangezien de term "alpha" niet aanwezig is in de interface, mag de notie van het voortgangspad van een project niet worden uitgedrukt. Het is daarom niet nodig om het jargon van de verschillende stadia van softwareontwerp te gebruiken. Er kan dan een meer Nederlandstalige term worden gebruikt die voor iedereen begrijpelijk is.
 
-De plus, `bêta`, en français, pourrait paraître comme une insulte. Ce terme peut être exprimé sous la forme de « fonctionnalités expérimentales », un terme d'autant plus connu dans d'autres logiciels comme LibreOffice.
+Bovendien klinkt 'bèta' in het Nederlands misschien als een belediging. Deze term kan worden uitgedrukt in de vorm van "experimentele functionaliteiten", een term die des te meer bekend is in andere software zoals LibreOffice.
 
-### BG
+### Achtergrond
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Button BG | Arrière-plan du bouton |
+| Button BG | Achtergrond van knop |
 
-`BG` correspond à `background`. On n'utilise pas `fond` mais bien `arrière-plan`.
+`BG` verwijst naar `background`. Wij gebruiken achtergrond.
 
 ### Bot
 
-Utilisez BOT ou Bot en contexte, car ce terme est de plus en plus utilisé en français dans le cadre des solutions de messagerie pour désigner des programmes informatiques qui interragissent comme s'il s'agissait d'une personne au sein du chat.
+We gebruiken BOT of Bot omdat deze term in het Nederlands steeds vaker wordt gebruikt in de context van berichtenoplossingen om computerprogramma's aan te duiden die communiceren alsof het een persoon binnen de chat is.
 
 ### Canonical
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Invalid Canonical Algorithm. | Algorithm canonique invalide. |
+| Invalid Canonical Algorithm. | Ongeldige canoniek algoritme |
 
-Le terme `canonique` se réfère au processus de conversion de données dans une forme standardisée, normalisée. (cf. [canonicalization sur Wikipedia](https://en.wikipedia.org/wiki/Canonicalization)).
+De term "canoniek" verwijst naar het proces van het omzetten van gegevens in een gestandaardiseerde, genormaliseerde vorm. (zie [canonicalisatie op Wikipedia](https://en.wikipedia.org/wiki/Canonicalization)).
 
-### Constraints
+### Beperkingen
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Channel membership denied to the following users because of group constraints: {{ .UserIDs }} | L'ajout en tant que membre au canal a été refusé pour les utilisateurs suivants à cause de restrictions de groupe : {{ .UserIDs }} |
-| User cannot be added to this channel because it is constrained to group members only. | L'utilisateur ne peut pas être ajouté à ce canal parce ce canal est uniquement restreint aux membres de ce groupe. |
-| Unable to remove a user from a group-constrained team. | Impossible de retirer un utilisateur d'une équipe disposant de restrictions de groupe. |
+| Channel membership denied to the following users because of group constraints: {{ .UserIDs }} | De volgende gebruikers zijn vanwege groepsbeperkingen het lidmaatschap van het kanaal ontzegd: {{ .UserIDs }} |
+| User cannot be added to this channel because it is constrained to group members only. | De gebruiker kan niet worden toegevoegd aan dit kanaal omdat het alleen beperkt is tot groepsleden.  |
+| Unable to remove a user from a group-constrained team. | Kan een gebruiker niet verwijderen uit een team met groepsbeperkingen. |
 
-A traduire de façon similaire à « restrictions » en termes de droits d'accès.
+Te vertalen naar "beperkingen" op het gebied van toegangsrechten.
+
+### Create
+| EN | NL |
+| Create Posts | Berichten aanmaken |
+
+"Create" wordt vertaald als "aanmaken".
 
 ### Direct
 
-[cf. Message](#message)
+[cf. Bericht](#Bericht)
 
 ### Directory
 
-On utilise le terme dossier au sein de la traduction, excepté pour AD/LDAP ou Active Directory qui restent, eux, sans traduction vu qu'il s'agit du nom d'un produit.
+De term map wordt gebruikt in de vertaling, met uitzondering van AD/LDAP of Active Directory, die onvertaald blijven omdat het de naam van een product is.
 
 ### Details
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Please ask your system administrator for more details | Veuillez demander à votre administrateur système pour en savoir plus |
+| Please ask your system administrator for more details | Vraag jouw systeembeheerder meer informatie |
 
-N'utiliser pas `pour plus de détails`, `pour plus d'information` (ni sa variante au pluriel).
+Gebruik geen `voor meer details'. 
 
-### Documentation
+### Documentatie
 
-Dans ce contexte, on utilise le terme `Consultez la documentation pour en savoir plus.`. On n'utilise pas la tournure de phrase `pour en savoir davantage`, c'est trop long. Il en est de même pour `Veuillez vous référer` qui est également trop long.
+In dit verband wordt de term 'Controleer de documentatie voor meer informatie' gebruikt. We gebruiken de zinsnede 'om meer te weten te komen' niet, die is te lang. 
 
-Lorsque des mentions comme `our documentation` sont employées, il est important de les traduire par `notre documentation` et non par `la documentation`. En effet, on rencontre pareilles mentions dans le cas de ElasticSearch. Dans ce contexte, il s'agit de la documentation ElasticSearch propre (et donc spécifique) à Mattermost; il ne faudrait pas que l'utilisateur se rende sur la documentation générique de ElasticSearch qui ne l'aidera pas dans ce cas de figure.
+Wanneer referenties zoals `voor documentatie' worden gebruikt, is het belangrijk om deze te vertalen als `onze documentatie' en niet als `de documentatie'. Dergelijke vermeldingen zijn inderdaad te vinden in het geval van ElasticSearch. In deze context is het Mattermost's eigen (en dus specifieke) ElasticSearch-documentatie; de gebruiker moet niet naar de generieke ElasticSearch-documentatie gaan die hem in dit geval niet zal helpen.
 
 ### Enter / specify / input field
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Please enter your email | Veuillez **spécifier** votre adresse e-mail |
-| Please enter an email address | Veuillez **spécifier** une adresse e-mail |
-| SHIFT+DOWN (in input field): Highlight text to the next line\n | MAJ+BAS (dans le champ de saisie) : Sélectionne le texte jusqu'à la ligne suivante\n |
-Par mesure de cohérence, la règle générale est d'utiliser le terme `spécifier`. `saisir` est uniquement employé pour qualifier la `zone de saisie`.
+| Please enter your email | Voer jouw email-adres in |
+| Please enter an email address | Vier een email-adres in |
+| SHIFT+DOWN (in input field): Highlight text to the next line\n | SHIFT+PIJLTJE OMLAAG (in het invoerveld): Selecteert de tekst tot aan de volgende regel.
+Met het oog op de consistentie is de algemene regel om de term `invoeren` te gebruiken. 
 
-Pour ce qui est des messages qui ne spécifient pas une option : une publication, un message de texte, on utilisera le terme `composer` ([cf. Message](#message)).
+Voor berichten die geen optie specificeren: een bericht, een sms, gebruiken we de term `opstellen` ([cf. Bericht](#bericht)).
 
-### Email
+### E-mail
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Unable to find status of recipient for batched email notification | Impossible de trouver le statut du destinataire pour l'envoi par lot des notifications par e-mail |
-| Email invitations are disabled, no invite(s) sent | Les invitations par e-mail sont désactivées, aucune invitation envoyée. |
+| Unable to find status of recipient for batched email notification | Kan de status van de ontvanger niet vinden voor batch-e-mailmeldingen |
+| Email invitations are disabled, no invite(s) sent | E-mailuitnodigingen zijn uitgeschakeld, er worden geen uitnodigingen verstuurd. |
 
-Utilisez `adresse e-mail` et non `adresse électronique`. `Adresse électronique` n'a jamais vraiment été utilisé en dehors de la France et tend à être rendu nébuleux à cause des protocoles récents tels que le Bitcoin ou la Blockchain qui, eux, utilisent une adresse que l'on qualifie d'électronique.
+Gebruik `e-mailadres` voor adressen en `e-mail` voor e-mailberichten. De correcte schrijfwijze is e-mail.
 
-### Emoji
+### Emoticon
 
-`émoticône` est à privilégier dans la traduction de Mattermost.
+`emoticon` wordt verkozen binnen de vertaling van Mattermost.
 
 ### Encountered
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| An error encountered | Une erreur s'est produite |
+| An error encountered | Er is een fout opgetreden |
 
-`est survenue` aurait pu être correct également, mais `s'est produite` est à privilégier pour des raisons de cohérence.
 
 ### Endpoint
 
-[cf. section relatives aux APIs et aux routes d'API](#Routes)
+[zie paragraaf over API's en API-routes](#Routes)
 
 
-### Failed to
+### Failed to Unable to
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Failed to upgrade websocket connection | Impossible de mettre à niveau la connexion WebSocket |
+| Failed to upgrade websocket connection | Fout bij het upgraden van de WebSocket-verbinding |
+| Post search failed to complete | Zoekopdracht kon niet worden niet voltooid |
+| Unable to create the zip file | Fout bij het aanmaken van het zip-bestand |
 
-De façon plus pragmatique, toutes les chaînes qui commencent (et uniquement celles qui commencent) par « Failed to » sont traduites par « Impossible de » par mesure de cohérence.
+
+Pragmatisch worden alle teksten die beginnen (en alleen die welke beginnen) met "Failed to" vertaald als "Kon niet" of "Fout bij" voor consistentie.
 
 ### FileInfos
 
-A l'instar de [`NotifyProps`, cf. plus bas](#Notifications push / mobile / desktop), il s'agit du nom d'un objet et doit être traduit en fonction du contexte. Si le message est lié à l'API par exemple, on laissera le terme `FileInfos`; dans le cas où le message est destiné à l'utilisateur final, on traduira par `informations du fichier`.
+Zoals [`NotifyProps`, zie hieronder](#Push notifications / mobile / desktop), dit is de naam van een object en moet vertaald worden volgens de context. Als het bericht bijvoorbeeld API-gerelateerd is, laat dan de term `FileInfos` staan; als het bericht bedoeld is voor de eindgebruiker, vertaalt u het naar `bestandinformatie`.
 
 ### Flag
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Flagged Posts | Publications marquées d'un indicateur |
-| Flag | Marquer avec un indicateur |
+| Flagged Posts | Gemarkeerde berichten |
+| Flag | Markeren |
 | Flag | Ajouter un indicateur |
 | Flag | Marquer |
-| Unflag | Supprimer l'indicateur |
+| Unflag | Markering verwijderen |
 
-Remarquons que plusieurs traductions pour `flag` ont été utilisées ci-dessus. Choisissez simplement celle qui convient en fonction de la taille disponible.
 
-Attention, le mot `flag` est également utilisé pour les catégories d'émoticônes (cf. `.mobile.emoji_picker.flags`). Dans ce cas de figure et uniquement dans celui-ci, utilisez le terme `Drapeaux`.
+Let op, het woord `vlag` wordt ook gebruikt voor emoticon-categorieën (zie `.mobile.emoji_picker.flags`). In dit geval en alleen in dit geval, gebruik de term `Vlaggen`.
 
 ### Folder
 
@@ -574,49 +469,50 @@ Attention, le mot `flag` est également utilisé pour les catégories d'émotic�
 
 ### Follow up
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Follow up flag | Indicateur de suivi |
+| Follow up flag | Volgmarkering |
 
-Il s'agit simplement des indicateurs pour suivre un message. 
+Het zijn gewoon indicatoren om een boodschap te volgen. 
 
 ### Get / retrieve
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| We couldn't get the team members | Impossible de récupérer les membres de l'équipe |
-| Error to retrieve the current channel. | Impossible de récupérer le canal courant. |
+| We couldn't get the team members | We konden de teamleden niet ophalen |
+| Error to retrieve the current channel. | Fout bij het ophalen van het huidig kanaal. |
 
-`récupérer` est à privilégier pour des raisons de cohérence.
+Ophalen wordt verkozen omwille van consistentie.
 
 ### Guest
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Guests | Utilisateurs invités |
-| Invite guests | Inviter des utilisateurs invités |
+| Guests | Gastgebruikers |
+| Invite guests | Gastgebruiker uitnodigen |
 
-`Utilisateur invité` bien que plus long est nécessaire pour éviter de tomber sur des situations où on aurait `inviter des invités` qui semble bizarre.
 
 
 ### Handle
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| A channel with that handle already exists | Un canal avec ce pseudonyme existe déjà |
-| This field is handled through your login provider. If you want to change it, you need to do so through your login provider. | Ce champ est géré par le service d'authentification. Si vous souhaitez le modifier, vous devez le faire par le biais de votre service d'authentification. |
+| A channel with that handle already exists | Er bestaat al een kanaal met deze pseudoniem |
+| This field is handled through your login provider. If you want to change it, you need to do so through your login provider. | Dit veld wordt beheerd door de authenticatiedienst. Als u het wilt veranderen, moet u dit doen via uw authenticatiedienst. |
 
-Veuillez ne pas utiliser pseudonyme dans ce contexte. Identifiant est suffisant.
+Gebruik in dit verband geen pseudoniem. Gebruikersnaam is voldoende.
+
 
 ### Hours / timezone
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
 | {{.SenderName}} - {{.Hour}}:{{.Minute}} {{.TimeZone}}, {{.Month}} {{.Day}} | {{.SenderName}} - {{.Day}}/{{.Month}}, {{.Hour}}:{{.Minute}} {{.Timezone}} |
 
-Le travail de traduction n'implique pas seulement une traduction bête et méchante des chaînes de caractères. Ces dernières doivent également être adaptée en fonction de la coutume ou des habitudes. Dans la francophonie, l'ordre des éléments d'une date n'est pas le même qu'en anglais. Il s'agit là tout d'un travail de localisation.
+Bij vertaalwerk gaat het niet alleen om een domme en vervelende vertaling van zinnen. De zinnen moeten ook worden aangepast aan het gebruik of de gewoonte. In de Nederlandstalige wereld is de volgorde van de elementen van een datum niet dezelfde als in het Engels. Dit is allemaal een kwestie van lokalisatie.
 
-Ici, en l'occurrence, on placera la date avant l'heure et les éléments de la chaîne de la data seront séparés par un slash (`/`).
+In dit geval wordt de datum voor de tijd geplaatst en worden de elementen gescheiden door een schuine streep (`/`).
+
 
 ### Invitations
 
@@ -624,209 +520,218 @@ Ici, en l'occurrence, on placera la date avant l'heure et les éléments de la c
 
 ### Jobs
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| No indexing jobs queued. | Aucune tâche d'indexation mise en file d'attente. |
+| No indexing jobs queued. | Geen indexeringstaken in de wachtrij. |
 
-Le terme `tâche` est à employer dans le jargon (cf. les `tâches planifiées` sous Windows).
+De term `taak' wordt in het jargon gebruikt (zie `geplande taken' in Windows).
 
 ### Kick / ban / remove
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Remove a member from the channel | Éjecte un membre du canal |
-| Failed to add user to channel because they have been removed from the team. | Impossible d'ajouter l'utilisateur au canal car il a été retiré de l'équipe.|
-| Failed to find user to be removed | Impossible de trouver l'utilisateur à supprimer |
-| Unable to remove license file, err=%v | Impossible de supprimer le fichier de licence, err=%v |
+| Remove a member from the channel | Verwijder een kanaallid |
+| Failed to add user to channel because they have been removed from the team. | Fout bij het toevoegen van het kanaallid omdatdat deze verwijderd werd uit het team. |
+| Failed to find user to be removed | Kon de te verwijderen gebruiker niet vinden. |
+| Unable to remove license file, err=%v | Fout bij het verwijderen van het licentiebestand, err=%v |
 
-* Pour un fichier, on utilise `supprimer`.
-* Pour le fait de retirer un utilisateur d'un canal ou d'une équipe, on emploie `retirer`.
-* Pour un `ban`/`banissement` on utilisera `bannir` de façon à se rapprocher de l'anglais et éviter les termes comme `exclure`.
-* Pour un `kick`, on emploie `éjecter`.
-* Pour le fait de supprimer un utilisateur complètement, on emploie `supprimer`.
-* La différence entre un `bannissement` et une `éjection` se traduit par la possibilité pour l'utilisateur de se reconncter par la suite ou non. Pour le banissement, l'utilisateur ne pourra plus se connecter tant que l'administrateur du canal n'aura pas changé d'avis.
+* Voor een bestand gebruiken we `wissen`.
+* Voor het verwijderen van een gebruiker uit een kanaal of team, gebruiken we "verwijderen".
+* Voor een `ban` gebruiken we `verbannen` om dichter bij het Engels te zijn en termen als `uitsluiten` te vermijden.
+* Voor een `kick`, gebruiken we `schoppen'
+* Om een gebruiker volledig te verwijderen, gebruik je `verwijderen`.
+* Het verschil tussen een 'ban' en een 'schop' is of de gebruiker later opnieuw kan verbinden. Voor het bannen zal de gebruiker niet in staat zijn om opnieuw in te loggen totdat de kanaalbeheerder van gedachten verandert.
 
 ### Link/linking
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Link failed | L'association a échoué |
-| Linked | Associé |
-| Unlink failed | La dissociation a échoué |
+| Link failed | De associatie heeft gefaald |
+| Linked | Geassocieerd |
+| Unlink failed | Fout bij dissociatie |
 
-Ces mentions sont souvent rencontrées dans le cadre de la synchronisation d'utilisateurs entre plusieurs plateformes, notamment les annuaires AD/LDAP. Dans ce cadre, nous utiliserons les termes `association` et `dissociation` rencontrées le plus souvent au lieu du terme `lien`. Nous n'avons en effet pas de traduction pour `unlink` ce qui rendait l'ensemble moins harmonieux.
+Deze vermeldingen komen vaak voor bij het synchroniseren van gebruikers op meerdere platforms, met name AD/LDAP-mappen. In deze context zullen we de termen "associatie" en "dissociatie" gebruiken die het vaakst voorkomen in plaats van de term "link". We hebben geen vertaling voor "unlink" wat het geheel minder harmonieus maakt.
 
 ### Marketplace
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Plugin Marketplace | Place de marché de plugins |
-| Failed to marshal marketplace plugins. | Impossible d'interpréter les données des plugins de la place de marché. |
-| URL of the marketplace server. | L'URL du serveur de place de marché. |
+| Plugin Marketplace | Plugin marktplaats |
+| Failed to marshal marketplace plugins. | Niet in staat om de gegevens van de plugins op de marktplaats te interpreteren. |
+| URL of the marketplace server. | De URL van de marktplaats server. |
 
 ### Marshalling
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| An error occurred marshalling the JSON data for export. | Une erreur s'est produite lors de la préparation à l'exportation (marshalling) des données JSON. |
-| marshal error | erreur de transformation de données (marshalling) |
-| Failed to marshal marketplace plugins. | Impossible d'interpréter les données des plugins de la place de marché. |
+| An error occurred marshalling the JSON data for export. | Er is een fout opgetreden bij het voorbereiden van JSON-gegevens voor export (marshalling). |
+| marshal error | fout in de gegevenstransformatie (marshalling) |
+| Failed to marshal marketplace plugins. | Fout bij de interpretatie van de gegevens van de plugins op de marktplaats. |
 
-En sciences informatiques, le marshalling (ou marshaling) est le fait de transformer la représentation en mémoire d'un objet dans un format dédié au stockage ou à la transmission réseau. Ce terme est assez proche de la sérialisation. Pour s'adapter à cette définition, nous n'hésitons pas à prendre des latitudes dans la traduction de façon à ce que les non anglophones ou ceux qui n'ont pas des connaissances informatiques poussées puissent tout de même comprendre.
+In de computerwetenschap is marshalling de handeling waarbij de geheugenvoorstelling van een object wordt omgezet in een formaat dat bestemd is voor netwerkopslag of -transmissie. Deze term komt dicht in de buurt van serialisatie. Om ons aan te passen aan deze definitie, aarzelen we niet om veralgemeningen in de vertaling te nemen, zodat niet-Engelstaligen of mensen zonder geavanceerde computerkennis het toch kunnen begrijpen.
+
 
 ### Member / channel member / membership
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Could not find channel member when importing direct channel | Impossible de trouver le membre du canal lors de l'importation du canal de messages personnels |
-| No channel member found for that user ID and channel ID | Aucun membre de canal trouvé pour cet ID utilisateur et cet ID de canal |
-| Failed to update the user channels memberships | Impossible de mettre à jour les canaux de l'utilisateur auxquels il appartient |
+| Could not find channel member when importing direct channel | Kan kanaallid niet vinden bij het importeren van persoonlijk berichtkanaal |
+| No channel member found for that user ID and channel ID | Er zijn geen kanaalleden gevonden voor dit gebruikers-ID en kanaal-ID |
+| Failed to update the user channels memberships | Kan de kanalen van de gebruiker waartoe deze behoort niet bijwerken |
 
-En fonction du contexte et selon la phonétique, il se peut qu'on doive utiliser « de » plutôt que « du ».
+
+
+### Mention / Mentions
+
+| EN | NL |
+| --- | --- |
+Notify group members with a group mention | Groepsleden verwittigen bij een groepsvermelding |
+
+Mention wordt vertaald als vermelding
 
 ### Message
 
-Mattermost est utilisé pour envoyer des `messages`. Ces messages peuvent être composés de texte et/ou d'objets tels que des fichiers (images, documents, émoticônes, etc.).
+Mattermost wordt gebruikt om `berichten' te versturen. Deze berichten kunnen worden samengesteld uit tekst en/of objecten zoals bestanden (afbeeldingen, documenten, emoticons, etc.).
 
-Au sein de Mattermost, il existe 3 types de canaux et donc 3 types de messages :
+Binnen Mattermost zijn er 3 soorten kanalen en dus 3 soorten berichten:
 
-* Les messages publics qui sont les messages publiés dans des canaux publics (groupes publics)
+* Publieke berichten die in publieke kanalen worden gepubliceerd (publieke groepen)
 
-* Les messages privés sont les messages publiés dans les canaux privés (groupes privés)
+* Privé-berichten zijn berichten die in privé-kanalen worden gepubliceerd (privé-groepen)
 
-* Les messages personnels qui sont les messages s'adressant en direct à une personne, en un-à-un (one-to-one), ou depuis récemment en petits groupes jusqu'à maximum 5 personnes. Plus communément appelés Messages Directs (ou DM) sur Twitter, ce terme est cependant à proscrire au sein de Mattermost. En effet, sur Twitter la fonctionnalité de DM reprend à la fois les messages par groupes privés et les messages en un-à-un. La fonctionnalité est scindée en 2 fonctionnalités bien distinctes au sein de Mattermost.
+* Persoonlijke berichten die live aan één persoon zijn gericht, op een één-op-één-basis, of recentelijk in kleine groepen tot maximaal 5 personen. Meer algemeen bekend als Directe Berichten (of DM) op Twitter, binnen Mattermost is deze term echter anders. Inderdaad, op Twitter bevat de DM-functionaliteit zowel privé-groepsberichten als één-op-één-berichten. De functionaliteit is verdeeld in 2 verschillende functies binnen Mattermost.
 
-Pour chaque type de canal, Mattermost considère 2 types de messages : 
+Voor elk type van kanaal, Mattermost beschouwt 2 types van berichten: 
 
-* les publications qui sont les messages parents qui débutent un fil de discussion;
+* berichten die de bovenliggende berichten zijn die een draadje (thread) thread starten;
 
-* les réponses qui sont les messages répondant à un message parent (publication) dans un fil de discusion.
+* Antwoorden die de berichten zijn die antwoorden op een ouder bericht (post) in een draadje (thread).
 
-Si un utilisateur répond à un message sans passer par la fonctionalité de fil de discusion située dans la barre latérale de droite, son message sera considéré comme une publication et ouvrira un nouveau fil.
+Als een gebruiker antwoordt op een bericht zonder door de thread-functie te gaan die zich in de rechter zijbalk bevindt, wordt zijn bericht als een nieuw bericht beschouwd en wordt er een nieuwe thread geopend.
 
-On `envoie` un message et on `publie` une publication.
+Je 'verzendt' een antwoord en 'publiceert' een bericht.
 
-On `compose` un message, une publication ou une réponse.
+Stel een bericht op, post of antwoord.
 
-| EN | FR |
+
+| EN | NL |
 | --- | --- |
-| Invalid user ID for direct channel creation | ID utilisateur invalide pour la création du canal de messages privés |
-| Failed to create direct channel | Impossible de créer le canal de messages privés |
-| Failed to create group channel | Impossible de créer le canal de messages de groupe |
-| Missing required direct channel property: members | La propriété requise pour un canal de messages privés est manquante: members |
+| Invalid user ID for direct channel creation | Ongeldige gebruikers-ID voor het aanmaken van een privé-berichtkanaal |
+| Failed to create direct channel | Fout bij het aanmaken van het privé-berichtkanaal |
+| Failed to create group channel | Fout bij het aanmaken van een groepskanaal |
+| Missing required direct channel property: members | De vereiste eigenschap voor een privé-berichtkanaal ontbreekt: leden |
 
 [cf. Posted / posts / publication](#posted--posts--publication)
 
 ### Message export job
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Message export job BatchSize must be a positive integer | Le paramètre BatchSize de la tâche d'exportation de messages doit être un entier positif |
+| Message export job BatchSize must be a positive integer | Bericht export job BatchSize moet een positief geheel getal zijn |
 
 ### Modify
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Update Email | Modifier l'adresse e-mail |
+| Update Email | E-mailadres bijwerken |
 
-Bien qu'on ait tendance à vouloir traduire par `mettre à jour`, la plupart du temps traduire par `modifier` est plus simple et correct. On emploiera le terme `mise à jour` uniquement dans le cadre de mises à jour de l'application que nous parlions de la partie serveur ou cliente (webapp, application mobile ou de bureau).
+Hoewel we de neiging hebben om te vertalen als `updaten`, is het vertalen als `bijwerken` meestal eenvoudiger en correcter. We zullen de term `update' alleen gebruiken in de context van applicatie-updates, of het nu gaat om het server- of clientgedeelte (webapp, mobiel of desktopapplicatie).
 
-Par exception, on pourra employer le terme `mise à jour` lorsqu'on parlera de raffraichissement de l'affichage d'une vue du logiciel, de la mise à jour d'une connexion WebSocket ou lorsque l'on parle de connexion SMTP/STARTTLS, bien que dans ces derniers cas l'utilisation de `mise à niveau` semble plus appropriée.
+Bij wijze van uitzondering kunnen we de term "update" gebruiken wanneer we het hebben over het verversen van de weergave van een beeld van de software, het updaten van een WebSocket-verbinding of wanneer we het hebben over SMTP/STARTTLS-verbindingen, hoewel in het laatste geval het gebruik van "upgrade" meer op zijn plaats lijkt.
 
 ### Mute
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| mute | sourdine |
-| Could not mute channel {{.Channel}} as you are not a member. | Impossible de mettre en sourdine le cnal {{.Channel}}, car vous n'êtes pas membre de celui-ci. |
+| mute | dempen |
+| Could not mute channel {{.Channel}} as you are not a member. | Kon kanaal {{.Channel}} niet dempen omdat je geen lid bent. |
 
 ### Notifications push / mobile / desktop
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Desktop notifications | Notifications de bureau |
-| Invalid Channel Trigger Notify Prop for user. | La propriété utilisateur de déclencheur de notification de canal est invalide. |
-| Invalid Comment Trigger Notify Prop for user. | La propriété utilisateur de déclencheur de notification de commentaire est invalide. |
-| Mobile Push | Notifications push sur mobile |
-| Encountered error when getting files for notification message, post_id=%v, err=%v | Une erreur s'est produite lors de la récupération des fichiers pour la notification de nouvelle publication, post_id=%v, err=%v |
-| Invalid Email Notify Prop value for user. | La valeur de la propriété de notification par e-mail est invalide pour l'utilisateur. |
-| Turns off desktop, email and push notifications for the current channel or the [channel] specified. | Désactive les notifications de bureau, par e-mail et push pour le canal actuel ou pour le canal [channel]. |
+| Desktop notifications | Bureaubladmeldingen |
+| Invalid Channel Trigger Notify Prop for user. | Ongeldige kanaaltriggerberichteigenschap voor gebruiker. |
+| Mobile Push | Mobiele meldingen |
+| Encountered error when getting files for notification message, post_id=%v, err=%v | Fout bij het ontvangen van bestanden voor een notificatiebericht, post_id=%v, err=%v |
+| Invalid Email Notify Prop value for user. | Ongeldige emailmeldingeigenschap voor gebruiker. |
+| Turns off desktop, email and push notifications for the current channel or the channel specified. | Schakelt desktop, e-mail and mobiele meldingen uit voor het huidige kanaal of het gespecificeerde kanaal.
 
-Traduisez les termes `desktop` et `mobile`. N'employez pas le terme `sur le bureau` ou `sur le mobile`.
+Desktop vertalen we als Bureaublad.
+Notifications vertalen we als meldingen.
+Push notifications vertalen we als push-meldingen.
 
-Faites attention à ce que votre traduction soit claire lorsqu'il est question de `push`, mentionnez la mention `notification` lorsqu'elle est absente et n'utilisez par le terme `poussée`. Gardez à l'esprit que notification push tend à être de plus en plus utilisé, même en francophonie. Un terme moins employé rendra l'application plus difficile à appréhender.
 
-Veillez à placer la mention `notification` en premier lieu, de façon à rester cohérent avec les termes tels que `notifications push` et `notifications mobiles`. Il s'agit donc bien d'une `notification par e-mail` et non d'un `e-mail de notification`.
+Zorg ervoor dat u `melding` op de laatste plaats zet, zodat deze in overeenstemming is met termen als `push-meldingen' en `mobiele meldingen'. Dit is `e-mailmelding' en niet `melding per e-mail'.
 
-Considérez les termes `NotifyProps` et `Notify Props` comme semblables. Ils doivent être traduits. `notify_props` quant à lui est un champ JSON, conservez le tel quel.
+Beschouw de termen `NotifyProps` en `Notify Props` als vergelijkbaar. Ze moeten worden vertaald. `notify_props` is een JSON-veld, dus dit vertalen we niet
 
 ### Optional
 
-Par mesure de cohérence, il est recommandé d'utilisé `Facultatif` au lieu du terme `Optionnel`.
+Voor de consistentie wordt aanbevolen om `Optioneel` te gebruiken in plaats van `Facultatief`.
 
 ### Override
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Enable integrations to override usernames | Permettre aux intégrations de redéfinir les noms d'utilisateur |
+| Enable integrations to override usernames | Integraties mogelijk maken om gebruikersnamen te overschrijven  |
 
 ### Packaged
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Cannot install prepackaged plugin | Impossible d'installer le plugin préempaqueté |
+| Cannot install prepackaged plugin | Kan geen voorverpakte plugin installeren |
 
-Rappel: il n'y a pas de trait d'union avec le préfixe `pré`.
 
 ### Parse / parser
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Elasticsearch indexing worker failed to parse the start time | Le système d’agrégation Elasticsearch n'a pas pu interpréter l'heure de début |
-| Could not parse multipart form | Impossible d'interpréter le formulaire multipart. |
+| Elasticsearch indexing worker failed to parse the start time | Het Elasticsearch-aggregatiesysteem kon de starttijd niet interpreteren |
+| Could not parse multipart form | Kan multipart formulier niet interpreteren. |
 
-Ne pas traduire par `analyser`, même si ce terme le plus fréquent représente l'analyse de la syntaxe grammaticale d'un langage, `interpréter` dans le sens comprendre est plus correct dans ce cas d'utilisation.
+Niet vertalen door `analyseren`, ook al vertegenwoordigt deze meest voorkomende term de analyse van de grammaticale syntaxis van een taal, is `interpreteren`  correcter in dit geval.
 
 ### Permanently
 
-Utilisez `définitivement` à la place de `de façon permanente`.
+Gebruik `definitief` in plaats van `permanent`.
 
 ### Permissions
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| You do not have the appropriate permissions | Vous n'avez pas les permissions requises |
-| Invalid permissions to regenerate the OAuth2 App Secret | Permissions insuffisantes pour regénérer la clé secrète de l'application OAuth2 |
-| Inappropriate channel permissions | Permissions insuffisantes pour ce canal |
+| You do not have the appropriate permissions | Je hebt niet voldoende rechten. |
+| Invalid permissions to regenerate the OAuth2 App Secret | Onvoldoende rechten om de OAuth2 App Secret te regeneren |
+| Inappropriate channel permissions | Onvoldoende rechten vor dit kanaal |
 
-`permissions` est à privilégier pour des raisons de cohérence et de rapprochement avec la version anglaise. `Permissions invalides`, `permissions` et `droits` sont à proscrire.
+`Rechten` heeft de voorkeur. `Machtigingen` en `Permissies` proberen we te vermijden.
 
-Dans le cas du contexte de permissions qui nous concerne, il est question de permissions qui sont trop restrictives et non de permissions d'accès invalides (permissions UNIX 775 au lieu de 770 par exemple).
+In het geval van de machtigingscontext die ons betreft, hebben we het over machtigingen die te beperkend zijn en geen ongeldige toegangsmachtigingen (bijvoorbeeld UNIX 775-machtigingen in plaats van 770).
 
 ### Populate
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| (Optional) The attribute in the AD/LDAP server used to populate the first name of users in Mattermost. When set, users cannot edit their first name, since it is synchronized with the LDAP server. When left blank, users can set their first name in Account Settings. | (Facultatif) L'attribut du serveur AD/LDAP qui est utilisé pour remplir les prénoms des utilisateurs de Mattermost. Lorsque défini, les utilisateurs ne peuvent pas éditer leur prénom étant donné qu'il est alors synchronisé avec le serveur LDAP. Lorsque laissé vide, les utilisateurs peuvent définir leur propre prénom dans les paramètres du compte. |
+| (Optional) The attribute in the AD/LDAP server used to populate the first name of users in Mattermost. When set, users cannot edit their first name, since it is synchronized with the LDAP server. When left blank, users can set their first name in Account Settings. | (Optioneel) Het attribuut in de AD/LDAP-server dat wordt gebruikt om de voornaam van gebruikers in Mattermost in te vullen. Wanneer deze is ingesteld, kunnen gebruikers hun voornaam niet bewerken, omdat deze gesynchroniseerd is met de LDAP-server. Wanneer deze optie leeg is, kunnen gebruikers hun voornaam instellen in Account Instellingen. |
 
 ### Posted / posts / publication
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Unable to create /echo post, err=%v | Impossible de créer le message avec la commande /echo, err=%v |
-| We couldn't find the pinned posts | Impossible de récupérer les messages épinglés |
-| Failed to post update channel header message | Impossible de publier le message indiquant le changement de l'entête du canal |
-| Go to Post | Aller au message |
+| Unable to create /echo post, err=%v | Fout bij het aanmaken van een bericht via het commando /echo, err=%v |
+| We couldn't find the pinned posts | Fout bij het ophalen van de vastgemaakte berichten |
+| Failed to post update channel header message | Fout bij het wijzigen van de kanaalhoofding |
+| Go to Post | Ga naar bericht |
 
-Un `post` ou `poste` est un anglicisme. La règle générale est de garder la mention `message` et le verbe `envoyer` plutôt que `publier` ([cf. Message](#message)).
+Een 'post' of 'post' is een anglicisme. De algemene regel is om de vermelding `bericht` en het werkwoord `sturen` te behouden in plaats van `publiceren` ([cf. Bericht](#boodschap)).
 
-Dans de très rares cas, comme lorsqu'on veut explicitement identifier le premier message d'un fil de discusion ou lorsque l'on parle d'un message publié par une intégration (un service tiers lié à Mattermost), le terme `publication` est à privilégier. De même, lorsque l'on qualifie globalement les messages d'un canal, on emploiera le terme 'les messages publiés dans le canal X' par exemple.
+In zeer zeldzame gevallen, zoals wanneer men expliciet het eerste bericht van een draadje(thread) wil identificeren, of wanneer men praat over een bericht dat gepubliceerd is door een integratie (een dienst van een derde partij die gekoppeld is aan Mattermost), heeft de term `publiceren` de voorkeur. Op dezelfde manier zullen we bij de globale kwalificatie van de berichten van een kanaal bijvoorbeeld de term 'berichten gepubliceerd in kanaal X' gebruiken.
 
-Notez que pour `Go to Post`, étant donné que ce texte concerne tous types de messages, il n'est pas visible uniquement pour les publications, mais pour tous les messages. Faites donc attention et veuillez à vous documenter lorsque vous tentez de traduire des parties du logiciel faisant appel à des fonctionnalités que vous ne maîtrisez pas totalement.
+Merk op dat voor `Go to Post`, aangezien deze tekst van toepassing is op alle soorten berichten, het niet alleen zichtbaar is voor berichten, maar voor alle berichten. Wees dus voorzichtig en lees zorgvuldig wanneer je probeert delen van de software te vertalen die gebruik maken van functies die u niet volledig begrijpt.
 
-Lorsqu'un message est publié par un utilisateur, on dit qu'il est `envoyé`, lorsque le message est publié par le système (message `join`/`leave`/changement d'entête), on dit qu'il est `publié`.
+Wanneer een bericht wordt verstuurd door een gebruiker, wordt er gezegd dat het 'verzonden' is, wanneer het bericht wordt gepubliceerd door het systeem (bericht `join`/`leave`/change of header), wordt er gezegd dat het `gepubliceerd` is.
 
-Concernant les messages épinglés, bien que `find` aurait pu être traduit par `trouver`, de façon à assurer une certaine cohérence avec les autres messages d'erreur de ce type, nous employons ici le verbe `récupérer` (cf. [Get / retrieve](#get--retrieve) plus haut).
+Voor vastgepinde berichten, hoewel `find` vertaald had kunnen worden als `vinden`, gebruiken we hier het werkwoord `ophalen` (zie [Krijgen / ophalen](#get-retrieve) hierboven) om de consistentie met andere foutmeldingen van dit type te waarborgen.
 
 ### Private message
 
@@ -834,49 +739,49 @@ Concernant les messages épinglés, bien que `find` aurait pu être traduit par 
 
 ### Preview mode
 
-Il s'agit du mode dans lequel se trouve Mattermost lorsque les notifications par e-mail ne sont pas activées et que dès lors, la configuration n'est pas totalement terminée. De façon à ne pas créer de confusion, nous utilisons le terme « Mode de démo ».
+Dit is de modus waarin Mattermost zich bevindt wanneer e-mailmeldingen niet zijn geactiveerd en daarom de configuratie niet volledig is voltooid. Om geen verwarring te creëren, gebruiken we de term "Demomodus".
 
 ### Preview features
 
-Lorsque ce terme ets employé pour parler des fonctionnalités en test, qui ne sont pas encore stables, parfois appelées beta, on emploiera le terme « fonctionnalités expérimentales ».
+Wanneer deze term wordt gebruikt om te praten over de te testen functionaliteiten, die nog niet stabiel zijn, soms bèta genoemd, zullen we de term "experimentele functionaliteiten" gebruiken.
 
 ### Privacy
 
-Par mesure de cohérence surtout après les nouveaux réglements comme le RGPD/GDPR, on traduit par « vie privée ».
+Voor consistentie, vooral na de nieuwe regelgeving zoals de GDPR / GDPR, vertalen we door "privacy".
 
 ### Purpose
 
-`Purpose` est souvent employé pour le message de description du canal `purpose message of the channel` par exemple. Il convient donc de le traduire comme `description` dans ce contexte.
+`Doel` wordt bijvoorbeeld vaak gebruikt voor het kanaalbeschrijvingsbericht. Het moet in deze context daarom worden vertaald als `beschrijving`.
 
 ### Rate limits
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Invalid memory store size for rate limit settings. Must be a positive number | Taille du stockage mémoire invalide pour les paramètres de limite de fréquence. Doit être un entier positif. |
-| Unable to initialize rate limiting. | Impossible d'initialiser le taux de limite d'appel sur l'API. |
+| Invalid memory store size for rate limit settings. Must be a positive number | Ongeldige geheugenopslaggrootte voor instellingen voor snelheidslimieten. Moet een positief getal zijn |
+| Unable to initialize rate limiting. | Kan snelheidsbeperking niet initialiseren op de API. |
 
-Souvent employé pour désigner une limite de taux. Dans le contexte de Mattermost, il s'agit d'un taux pour limiter le nombre d'appels sur l'API Mattermost que l'utilisateur peut faire dans un temps donné par exemple.
+Vaak gebruikt om een ​​tarieflimiet aan te geven. In de context van Mattermost is dit een tarief om het aantal aanroepen van de Mattermost API te beperken dat de gebruiker bijvoorbeeld in een bepaalde tijd kan doen.
 
-Bien que rencontré parfois dans les domaines du réseau, ce concept de limite n'est pas facile à exprimer en français. Si vous disposez d'une traduction plus appropriée, merci de nous en faire part.
+Hoewel het soms voorkomt in netwerkdomeinen, is dit concept van limiet niet gemakkelijk uit te drukken in het Nederlands. Laat het ons weten als je een geschiktere vertaling heeft.
 
 ### Reactions
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Reaction CreateAt property must be greater than the parent post CreateAt. | La propriété de réponse CreateAt doit être plus grande que la valeur de la propriété CreateAt parente. |
-| Missing required Reaction property: create_at. | La propriété requise de réaction est manquante : create_at. |
+| Reaction CreateAt property must be greater than the parent post CreateAt. | De eigenschap Reacie CreateAt  moet groter zijn dan de waarde van de bovenliggende eigenschap CreateAt. |
+| Missing required Reaction property: create_at. | De vereiste reactie-eigenschap ontbreekt: created_at. |
 
-Au sein de Mattermost, les réactions déterminent les +1 / -1 à des messages. A l'instar d'autres solutions de messagerie comme Facebook Messenger, les réactions peuvent également contenir des émoticônes de la collection standard fournie avec Mattermost voire même des émoticônes personnalisées.
+Binnen Mattermost bepalen de reacties de +1 / -1 voor berichten. Net als andere berichtenoplossingen zoals Facebook Messenger, kunnen de reacties ook emoticons bevatten uit de standaardcollectie die bij Mattermost wordt geleverd, of zelfs gepersonaliseerde emoticons.
 
-Les réactions ne doivent donc pas être confondues avec les réponses à un message ([cf. Message](#message)).
+Reacties moeten daarom niet worden verward met reacties op een bericht. ([cf. Bericht](#bericht)).
 
 ### Refresh
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Refresh the app now | Actualiser l'application maintenant |
+| Refresh the app now | Ververs de app nu|
 
-Le terme « refresh » est souvent employé pour déterminer le fait de rafraichir la page d'un navigateur web. Il arrive toutefois que ce terme soit employé pour demander à l'utilisateur de rafraichir l'application Mattermost. Dans ce sens, cela signifie qu'il faut que l'utilisateur appuie sur un bouton en particulier ou ferme ou relance l'application Mattermost. Dans ce dernier cas, on utilisera la traduction « actualiser » plutôt que « rafraichir ».
+De term "verversen" wordt vaak gebruikt om het feit van het vernieuwen van de pagina van een webbrowser te bepalen. Soms wordt de gebruiker te vragen de Mattermost-applicatie te vernieuwen. In die zin betekent dit dat de gebruiker op een bepaalde knop moet drukken of de Mattermost-applicatie moet sluiten of opnieuw moet starten. In het laatste geval wordt de vertaling "vernieuwen" in plaats van "verversen" gebruikt.
 
 ### Retrieve
 
@@ -884,128 +789,116 @@ Le terme « refresh » est souvent employé pour déterminer le fait de rafrai
 
 ### Rollback
 
-Dans le contexte des bases de données et des transactions, on utilisera « annuler la transaction ».
+In het kader van databases en transacties gebruiken we "annuleer de transactie".
 
 ### Routes
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Initializing team API routes | Initialisation des routes de l'API équipe |
-| Auth Endpoint: | Noeud d'authentification (auth endpoint) |
+| Initializing team API routes | Team API-routes initialiseren |
+| Auth Endpoint: | Auth-eindpunt |
 
-Bien que ces messages devraient principalement être vus par du personnel technique et donc sachant parler anglais, il est toutefois préférable de les traduire.
+Hoewel deze berichten voornamelijk door technisch personeel moeten worden gezien en daardoor Engels kunnen spreken, verdient het de voorkeur om ze te vertalen.
 
-Il faut voir une API comme un arbre composé de branche et de feuilles. Dans le contexte d'une API, chaque branche est appelée `route`, chaque embranchement (y compris le tout dernier placé en feuille) est appelé un `noeud`. Dans le cas d'une feuille, on appelle souvent ce noeud particulier le `noeud de terminaison` (`endpoint` en anglais). Ici, à cause de l'espace restreint, nous supprimons le terme `de terminaison`.
+Je moet een API zien als een boom die bestaat uit takken en bladeren. In de context van een API wordt elke tak `route` genoemd, elke tak (inclusief de allerlaatste die in blad is geplaatst) wordt een` knooppunt` genoemd. In het geval van een blad wordt dit specifieke knooppunt vaak het 'eindpunt' genoemd.
 
-Compte tenu de l'emplacement de telles chaînes de caractère au sein du logiciel, il est préférable de repréciser le terme anglais original à coté du terme francisé. Ces chaines étant vues majoritairement par du personnel technique et les guides et tutoriels en ligne étant souvent en anglais, avoir le terme en anglais facilite donc la recherche de correspondance.
+Gezien de locatie van dergelijke tekenreeksen binnen de software, verdient het de voorkeur om de oorspronkelijke Engelse term naast de Nederlandse term opnieuw te specificeren. Omdat deze kanalen voornamelijk worden gezien door technisch personeel en online gidsen en tutorials vaak in het Engels zijn, maakt het gebruik van de term in het Engels het daarom gemakkelijker om een ​​match te vinden.
 
-Microsoft, dans le cadre de sa plateforme .NET, possèdait une des rares documentations techniques traduites intégralement en français. Un [article en anglais sur le sujet qui nous préoccupe](https://web.archive.org/web/20190314035849/https://docs.microsoft.com/en-us/previous-versions/aspnet/cc668201(v=vs.100)) disposait d'[une correspondance française](https://web.archive.org/web/20150103202536/https://msdn.microsoft.com/fr-fr/library/cc668201.aspx).
-
-On utilise le terme `routage` uniquement dans ce cas-ci :
-
-| EN | FR |
+Microsoft, als onderdeel van zijn .NET-platform, had een van de weinige technische documentatie volledig vertaald in het Frans. Een [artikel in 
+We gebruiken de term `routing` alleen in dit geval:
+| EN | NL |
 | --- | --- |
-| ASP.NET Routing | Routage ASP.NET |
+| ASP.NET Routing | ASP.NET routing |
 
-Pour tout le reste, Microsoft utilise au choix : `route` ou `itinéraire`. Dans le cas de Mattermost, de façon à uniformiser les traductions mais également de se rapprocher de la version anglophone, nous utiliserons le terme `route`.
-
-De même, toujours basé sur l'exemple `Initializing team API routes`, nous n'utilisons pas de pluriel pour qualifier le noeud, ni nous n'utilisons de prépositions de lien.
-
-Les propositions suivantes seront donc considérées comme invalides et seront refusées dans Mattermost:
-
-| EN | FR |
-| --- | --- |
-| Initialisation des routes de l'API d'équipe | Initialisation des routes de l'API des équipes |
-| Initialisation des routes des APIs d'équipes | Initialisation des routes des APIs de l'équipe |
 
 ### Save
 
-Bien qu'on eusse préféré le terme le plus proche de l'anglais, à savoir « sauvegarder », « enregistrer » reste le terme le plus courant, car popularisé suite à l'usage massif des suites bureautique à la fin des années 2000. De plus, le terme « sauvegarde » fait trop penser à la copie de sauvegarde qu'on réalise dans le cas d'une politique de backup sur disques par exemple. On emploiera donc « enregistrer », « enregistrement » et bouton « Enregistrer ».
+We geven de voorkeuraan de term `Opslaan` boven `Bewaren`
 
 ### Scheme
 
-Attention à ce terme, il est utilisé à plusieurs endroits pour des significations radicalement différentes.
-* L'URI scheme est le protocole utilisé dans une URI comme http://, https://, wss://, ftp://, etc. On emploiera « protocole URI » ou « protocole URL » dans ce contexte.
-* Dans le cadre des permissions avancées et droits d'accès, un scheme est un ensemble de règles par défaut pour rejoindre un système, une équipe ou un canal. Dans ce contexte, en plus d'avoir une certaine similitude avec le terme anglophone « scheme », on emploiera « schéma de permissions » (« schémas de permissions » au pluriel). En effet, pour attribuer des règles et droits d'accès dans une organisation, il est souvent nécessaire de faire un plan ou un organigramme, et donc un schéma. « stratégie » sera proscrit ici, même si souvent employé dans les environnements Windows.
+Pas op voor deze term, deze wordt op verschillende plaatsen gebruikt voor sterk uiteenlopende betekenissen.
+* Het URI-schema is het protocol dat wordt gebruikt in een URI zoals http: //, https: //, wss: //, ftp: //, etc. In deze context gebruiken we "URI-protocol" of "URL-protocol".
+* In het kader van geavanceerde toestemmingen en toegangsrechten is een schema een set standaardregels voor deelname aan een systeem, team of kanaal. In deze context gebruiken we, naast een zekere gelijkenis met de Engelse term "scheme", "toestemmingsschema" ("toestemmingsschema's" in het meervoud). Om regels en toegangsrechten in een organisatie toe te wijzen, is het inderdaad vaak nodig om een ​​plan of een organigram te maken, en dus een diagram. "Strategie" wordt hier verboden, ook al wordt het vaak gebruikt in Windows-omgevingen.
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| The custom URL scheme {{.Scheme}} is invalid. Custom URL schemes must start with a letter and contain only letters, numbers, plus (+), period (.), and hyphen (-). | Le protocole URL personnalisé {{.Scheme}} est invalide. Les protocoles URL personnalisés doivent commencer par une lettre et ne peuvent contenir que des lettres, des chiffres, et les caractères plus (+), point (.), et trait d'union (-). |
-| The provided role is managed by a Scheme and therefore cannot be applied directly to a Channel Member | Le rôle spécifié est géré par un schéma de permissions et ne peut donc pas être appliqué directement à un membre d'équipe |
-| New Team Override Scheme | Nouveau schéma de permissions personnalisé |
+| The custom URL scheme {{.Scheme}} is invalid. Custom URL schemes must start with a letter and contain only letters, numbers, plus (+), period (.), and hyphen (-). | Het aangepaste URL-protocol {{.Scheme}} is ongeldig. Aangepaste URL-schema's moeten beginnen met een letter en alleen letters, cijfers, plus (+), punt (.) en streepje (-) bevatten. |
+| The provided role is managed by a Scheme and therefore cannot be applied directly to a Channel Member | De toegekende rol wordt beheerd door een toegangsschema en kan hierdoor niet direct toegepast worden op een kanaallid. |
+| New Team Override Scheme | Nieuwe aangepaste teamtoestemmingsschema  |
 
-Nous n'utilisons pas de constructions de phrase traduisant littéralement le terme « override »; ceci donne des phrases trop compliquées.
+We gebruiken geen zinsconstructies die de term "override" letterlijk vertalen; dit resulteert in overdreven gecompliceerde zinnen.
 
 ### Slash commands
 
-Il s'agit des commandes que vous spécifiez lorsque vous commencez votre message par un slash dans Mattermost. `commandes slash` est à privilégier pour des raisons de cohérence.
+Dit zijn de commando's die u opgeeft wanneer u uw bericht start met een schuine streep in Mattermost. 'slash-commando's' heeft de voorkeur voor consistentie.
 
 ### SSO
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| SSO / Single Sign-On | Authentification unique (SSO) |
+| SSO / Single Sign-On | Single Sign-On (SSO) |
 
-Dans le jargon technique, le terme SSO tend à prendre le pas sur le terme `Authentification unique`. Dans le cadre de Mattermost, il a donc été choisi de suffixer la traduction française par le terme SSO entre parenthèses de façon à préciser le contexte. En effet, le terme `authentification` pourrait être confondu avec le terme `authentification multi-facteurs` (MFA), autre fonctionnalité présente au sein de Mattermost.
+In technisch jargon is de term SSO of `Single Sign-On` gekend. We hebben niet direct een goed Nederlands alternatief. Suggesties zijn zeker welkom.
 
-Les traductions telles que `authentification simplifiée` ou `connexion unique` sont à proscrire.
+De vertaling  "vereenvoudigde authenticatie" is niet toegestaan.
 
 ### Support
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| ID Loaded Push Notifications are not configured or supported on this server. | Les notifications push chargées à partir de leur identifiant ne sont pas configurées ou prises en charge sur ce serveur. |
+| ID Loaded Push Notifications are not configured or supported on this server. | ID Loaded Pushmeldingen zijn niet geconfigureerd of ondersteund door deze server. |
 
-`support` est à traduire par `prendre en charge` de façon à rendre la chose plus correcte d'un point de vue francophone.
+`support` wordt vertaald als ondersteund.
 
 ### Sysadmin / system admin / team admin / channel admin
 
-On a choisi `administrateur système` au singulier et `administrateurs système` au pluriel. On sous-entend en effet le terme administrateur de la qualité système de l'informatique (tout ce qui n'est donc pas relatif réseau). Il ne faut donc pas le comprendre comme administrateur des systèmes dinformations/systèmes d'information. D'ailleurs, ici, il est question d'un seul système, celui de Mattermost.
+`Systeembeheerder` werd gekozen in het enkelvoud en `systeembeheerders` in het meervoud. De term `systeembeheerder` is in feite de term voor debeheerder van de systeemkwaliteit van de computer (alles wat niet gerelateerd is aan het netwerk). Het moet daarom niet worden opgevat als informatiesysteembeheerder/informatiesysteembeheerder. Bovendien hebben we het hier over één enkel systeem, dat van Mattermost.
 
-On a appliqué la même logique aux administrateurs d'équipe et de canal (respectivement `team admins` et `channel admins`).
+Dezelfde logica is toegepast op team- en kanaalbeheerders (respectievelijk `teambeheerders` en `kanaalbeheerders`).
 
 ### Terms
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Please enter text for your Custom Terms of Service. | Veuillez spécifier le texte correspondant aux conditions d'utilisation personnalisées. |
+| Please enter text for your Custom Terms of Service. | Voer de tekst in voor uw aangepaste servicevoorwaarden. |
 
-Utilisez le terme `conditions d'utilisation personnalisées`. `conditions personnalisées d'utilisation` semble être moins aisé à comprendre de prime abord. N'utilisez pas le terme `conditions de service` qui est une traduction trop littérale.
+Gebruik de term `aangepaste gebruiksvoorwaarden`. 
 
 ### Token / secret key
 
 | EN | FR |
 | --- | --- |
-| Personal access token added to your account | Un jeton d'accès personnel a été ajouté à votre compte |
+| Personal access token added to your account | Een persoonlijk toegangstoken werd toegevoegd aan jouw account |
 
 
-* `token`: Utilisez le mot `jeton` à la place.
-* `secret key`: `clé secrète` si c'est une clé utilisée dans le sens clé à ne pas divulguer, `clé privée` dans le cas où il est fait mention de clé publique ou s'il est question de chiffrement asymétrique.
+* `token`: We gebruiken het woord token omdat we geen gepaste Nederlandse vertaling vinden. Voorstellen zijn zeker welkom.
+* `secret key`: `geheime sleutel` als het gaat om een sleutel die wordt gebruikt in de zin van 'niet openbaar te maken sleutel', `privésleutel` in het geval dat er sprake is van een openbare sleutel of van asymmetrische versleuteling.
 
 ### Trigger
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| A trigger word cannot begin with a / | Un mot**-clé** déclencheur ne peut commencer par un / |
+| A trigger word cannot begin with a / | Een triggerwoord kan niet beginnen met een  / |
 
-### Unread
-
-Ni l'Académie françaine, ni les différents dictionnaires semblent s'accorder sur l'usage du tiret entre « non » et l'adjectif ([src.](https://www.dicollecte.org/thread.php?prj=fr&t=17)).
-Ici il est proposé de ne pas placer de tiret et d'utiliser donc « non lu ».
 
 ### URL signing
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Additional options such as the URL signing key. Refer to your image proxy documentation to learn more about what options are supported. | Paramètres additionnels tels que la clé de signature d'URL. Consultez la documentation du proxy d'images pour en savoir plus sur les paramètres supportés. |
+| Additional options such as the URL signing key. Refer to your image proxy documentation to learn more about what options are supported. | Extra parameters zoals de URL-signeersleutel. Zie de beeldproxydocumentatie voor meer informatie over de ondersteunde instellingen. |
 
-L'URL signing est un principe permettant de protéger les fichiers d'un serveur web d'accès non autorisés à l'aide d'une clé parfois spécifiée dans l'URL elle-même ([src.](https://www.limestonenetworks.com/support/knowledge-center/24/112/what_is_url_signing.html)). En pratique nous pouvons traduire par `clé de signature d'URL`.
+URL signing is een principe om bestanden op een webserver te beschermen tegen ongeautoriseerde toegang met behulp van een sleutel die soms in de URL zelf is gespecificeerd ([src.](https://www.limestonenetworks.com/support/knowledge-center/24/112/what_is_url_signing.html)). In de praktijk kunnen we dit vertalen als `URL-signeersleutel`.
+
+### When true
+
+We gebruiken hier "Indien ingeschakeld"
 
 ### Worker
 
-| EN | FR |
+| EN | NL |
 | --- | --- |
-| Elasticsearch indexing worker failed to parse the end time | Le système d’agrégation Elasticsearch n'a pas pu analyser l'heure de fin |
+| Elasticsearch indexing worker failed to parse the end time | Het Elasticsearch-aggregatiesysteem kon de eindtijd niet analyseren. |
 
-Bien que le terme doive se traduire par `travailleur`, on enploiera le terme `système de` en fonction du contexte.
+Hoewel de term moet worden vertaald als `werknemer`, zal de term `systeem` worden gebruikt afhankelijk van de context.
 
