@@ -25,7 +25,7 @@
         * [Exemple 2](#exemple-2)
         * [Exemple 3](#exemple-3)
         * [Exemple 4](#exemple-4)
-* [Vocabulaire](#vocabulaire)
+* [Woordenschat](#Woordenschat)
     * [At rest / in transit](#at-rest--in-transit)
     * [API](#api)
     * [Attach](#attach)
@@ -74,6 +74,7 @@
     * [Permanently](#permanently)
     * [Permissions](#permissions)
     * [Populate](#populate)
+    * [Purge](#purge)
     * [Posted / posts / publication](#posted--posts--publication)
     * [Private message](#private-message)
     * [Preview mode](#preview-mode)
@@ -268,7 +269,7 @@ Zoals je kan zien, moet je, afhankelijk van de context, mogelijk meer woorden tu
 
 Hier hebben we het over een belangrijke verandering, de zinomslag wordt helemaal niet op dezelfde manier vertaald, afhankelijk van of het enkelvoud of het meervoud is: 'Elke minuut' versus 'Elke x minuten'.
 
-## Vocabulaire
+## Woordenschat
 
 ### In rust / In transit
 
@@ -280,8 +281,8 @@ Dit concept is vrij recent en heeft recentelijk meer bekendheid gekregen na de i
 
 In het kader van gegevensverwerking bevindt dit laatste zich altijd in een van de volgende staten:
 * `Data in use`: data wordt constant veranderd van opslag naar datacenter, gebruik in spreadsheets, etc.
-* "Data in motion" of "Data in transit": wanneer de gegevens worden overgedragen via het computernetwerk of wanneer ze worden overgebracht naar RAM of eenvoudig worden bijgewerkt.
-* "Data at rest": inactieve data opgeslagen in databases, archieven, backups, kortom alle data die waarschijnlijk niet direct gebruikt zullen worden. In het geval van Mattermost kunnen dit de oude chatgegevens zijn die lang geleden op de applicatie zijn uitgewisseld.
+* `Data in motion` of `Data in transit`: wanneer de gegevens worden overgedragen via het computernetwerk of wanneer ze worden overgebracht naar RAM of eenvoudig worden bijgewerkt.
+* `Data at rest`: inactieve data opgeslagen in databases, archieven, backups, kortom alle data die waarschijnlijk niet direct gebruikt zullen worden. In het geval van Mattermost kunnen dit de oude chatgegevens zijn die lang geleden op de applicatie zijn uitgewisseld.
 
 We hebben besloten een aantal verduidelijkingen in de vertaalde keten te nemen om details over deze term nogal vaag voor een Nederlandstalige toe te voegen.
 
@@ -713,6 +714,13 @@ In het geval van de machtigingscontext die ons betreft, hebben we het over macht
 | EN | NL |
 | --- | --- |
 | (Optional) The attribute in the AD/LDAP server used to populate the first name of users in Mattermost. When set, users cannot edit their first name, since it is synchronized with the LDAP server. When left blank, users can set their first name in Account Settings. | (Optioneel) Het attribuut in de AD/LDAP-server dat wordt gebruikt om de voornaam van gebruikers in Mattermost in te vullen. Wanneer deze is ingesteld, kunnen gebruikers hun voornaam niet bewerken, omdat deze gesynchroniseerd is met de LDAP-server. Wanneer deze optie leeg is, kunnen gebruikers hun voornaam instellen in Account Instellingen. |
+
+### Purge
+
+| EN | NL |
+| --- | --- |
+| Failed to purge channel indexes. | Fout bij het opschonen van de kanaalindexen. |
+
 
 ### Posted / posts / publication
 
