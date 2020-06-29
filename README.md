@@ -109,20 +109,19 @@ De Nederlandse vertaling wordt actief bijgewerkt. We geven hier wat raadgevingen
 
 ### Vertalingsserver
 
-Mattermost gebruikt [Pootle voor de vertalingen](https://translate.mattermost.com/nl/). Als je dit nog niet deed, moet je een account aanmaken om te kunnen meewerken aan de vertaling.
+Mattermost gebruikt  [weblate voor de vertalingen](https://translate.mattermost.com/nl/). Het eenvoudigste om in te loggen is via je Gitlab of Github account.
 
-Het aantal vertaalde zinnen is vrij hoog binnen het Mattermost-project. Als je vertalingen vindt die de onderstaande regels niet respecteren, aarzel dan niet om een correctie op Pootle voor te stellen.
+Het aantal vertaalde zinnen is vrij hoog binnen het Mattermost-project. Als je vertalingen vindt die de onderstaande regels niet respecteren, aarzel dan niet om een correctie op Weblate voor te stellen.
 
-Houd er rekening mee dat Pootle meestal elke dag van middernacht tot één uur 's ochtends niet beschikbaar is (UTC + 1). De server is even onbereikbaar wanneer de vertalingen worden gesynchroniseerd met de Git-repository van Mattermost.
+Weblate wordt gebruikt sinds Mattermost versie 5.25 (juli 2020) en is dus nog vrij nieuw.
 
 ### Opmerkingen voor vertalers
 
 Pootle ondersteunt het toevoegen van opmerkingen om de vertaler te helpen. Ze zijn handig om aan de gebruiker te specificeren of een zin bijvoorbeeld moet vertaald worden naar de infinitief of de imperatief. 
 In het Engels is er inderdaad geen verschil tussen deze twee vormen, alleen de context en de consistentie van de rest van het dialoogvenster stellen ons in staat om de ene keer te kiezen in plaats van de andere.
 
-! [Voorbeeld van een Pootle-opmerking] (pootle_comments_0001.png)
 
-Deze opmerkingen kunnen worden toegevoegd via Pootle.
+Deze opmerkingen kunnen worden toegevoegd via Weblate.
 
 Houd er echter rekening mee dat deze opmerkingen kort moeten zijn.
 
